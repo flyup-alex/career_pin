@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  root 'social_users#new'
+
+  get 'social_users/create'
+
+  get 'social_users/show'
+
+  delete 'social_users/destroy'
+
   devise_for :companies
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
