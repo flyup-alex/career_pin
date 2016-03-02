@@ -25,7 +25,9 @@
 				</div>	
 			<% end %>
 				<div class="worker-social">
-					<a class="btn btn-block btn-social btn-lg btn-twitter" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-lg']);"><i class="fa fa-twitter"></i>Log in with Twitter</a>
+					<%= link_to 'auth/twitter', class:"btn btn-block btn-social btn-lg btn-twitter" do %>
+					<i class="fa fa-twitter"></i>Log in with Twitter
+					<% end %>
 				</div>
 				
 				<%= session[:social_user_id] %>

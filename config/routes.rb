@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'social_users#show'
+  root 'social_users#new'
   
   get 'social_users/create'
 
@@ -8,7 +8,13 @@ Rails.application.routes.draw do
 
   devise_for :companies
 
-  get ':id', to: 'social_users#new'
+  resources :social_users
+
+  get 'timelines', to: 'social_users#show'
+
+  
+
+  
 
   # facebook authentication routes
   get '/auth/facebook/callback', to: 'social_users#create'
@@ -18,6 +24,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
+  get ':id', to: 'social_users#new'
   # root 'welcome#index'
 
   # Example of regular route:

@@ -7,12 +7,17 @@ class ApplicationController < ActionController::Base
   def current_social_user
     @current_social_user ||= SocialUser.find_by(social_uid: session[:social_user_id]) if session[:social_user_id]
   end
-  helper_method :current_social_user
+  helper_method :current_social_user, :require_social_user, :social_logged_in?
 
   def social_logged_in?
-  	!!current_social_user
+    !!current_social_user
   end
-  
-  helper_method :social_logged_in?
+
+  def require_social_user
+    if !social_logged_in?
+      flash[:danger] = "You need to be logged in to see this page."
+      redirect_to '/zabezpieczeniedziala'
+    end
+  end
 
 end

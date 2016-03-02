@@ -1,12 +1,15 @@
-				<% if current_social_user %>
-				<%= link_to "Wyloguj się", social_users_destroy_path, method: :delete %>
-				<% end %>
-				<p>
-				<%= session[:company_name] %>
-				</p>
-				<%= session[:social_user_id] %>
-				<p>				<%= params %>
-					</p>
-
-				<%= @current_social_user.social_uid if @current_social_user %>
-
+<%= link_to "Wyloguj się", social_users_destroy_path, method: :delete %>
+	<% if @feed %>
+		<div style="width: 600px; align: left;" >
+			<h1>Facebook Data</h1>
+			<% @feed.each do |post| %>
+				<p><strong>Autor postu</strong><%= post['from']['name']%></p>
+				<p><strong>Zdjęcie autora</strong><%= image_tag( @graph.get_picture(post['from']['id'], type: :album))%></p>
+				<p><strong>Autor postu</strong><%= time_ago_in_words(post['updated_time'])%> ago</p>
+				<p><strong>Obrazek postu:</strong><%= image_tag(post['full_picture'], style: "width: 150px;") %></p>
+				<p><strong>Treść postu</strong><%= post['message'] %></p>
+				<%= "http://facebook.com/#{post['id']}" %>
+				<hr>
+			<% end %>
+	<% end %>
+</div>
