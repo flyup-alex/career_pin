@@ -43,13 +43,13 @@ include SocialUserHelper
   end
 
   def destroy
-    if social_logged_in? && company_signed_in?
+    if social_logged_in? 
     	SocialUser.find_by(social_uid: current_social_user.social_uid).destroy
     	session[:social_user_id] = nil
+    end
+    if company_signed_in?
       redirect_to company_logout_path      
     else
-      SocialUser.find_by(social_uid: current_social_user.social_uid).destroy
-      session[:social_user_id] = nil
       redirect_to root_path
     end
   end
