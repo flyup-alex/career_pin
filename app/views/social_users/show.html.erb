@@ -1,4 +1,7 @@
 <%= link_to "Wyloguj się", social_users_destroy_path, method: :delete %>
+<%= link_to "Zaloguj przez Face'a",'auth/facebook', class: "btn btn-block btn-social btn-lg btn-facebook"  %>
+
+<%= link_to "Zaloguj przez Twittera!",'auth/twitter', class: "btn btn-block btn-social btn-lg btn-facebook"  %>
 	<% if @feed %>
 		<div style="width: 600px; align: left;" >
 			<h1>Facebook Data</h1>
