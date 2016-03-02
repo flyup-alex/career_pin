@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
-  root 'social_users#new'
 
+  root 'social_users#show'
+  
   get 'social_users/create'
-
-  get 'social_users/show'
 
   delete 'social_users/destroy'
 
   devise_for :companies
+
+  get ':id', to: 'social_users#new'
+
+  # facebook authentication routes
+  get '/auth/facebook/callback', to: 'social_users#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

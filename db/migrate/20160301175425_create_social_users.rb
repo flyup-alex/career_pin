@@ -7,6 +7,7 @@ class CreateSocialUsers < ActiveRecord::Migration
       t.string :facebook_uid
       t.string :twitter_uid
       t.string :social_uid
+      t.string :company_name
 
       t.timestamps null: false
     end

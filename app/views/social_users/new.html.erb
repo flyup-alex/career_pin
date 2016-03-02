@@ -10,26 +10,27 @@
 				</div>
 
 				<div class="company-logo">
-					<img src="assets/images/nestle-logo-150-EN.png" alt="Nestle">
+					<%= image_tag('images/nestle-logo-150-EN.png', alt: "Nestle" ) %>
 				</div>
 			</div><!--
 			
 			--><div class="worker-login">
 			
 				<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
-			
+			<% if !social_logged_in? %>
 				<div class="worker-social">
-					<%= link_to social_users_create_path, class: "btn btn-block btn-social btn-lg btn-facebook" do %>
+					<%= link_to 'auth/facebook', class: "btn btn-block btn-social btn-lg btn-facebook" do %>
 					<i class="fa fa-facebook-official"></i>Log in with Facebook
 					<% end %>
 				</div>	
+			<% end %>
 				<div class="worker-social">
 					<a class="btn btn-block btn-social btn-lg btn-twitter" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-lg']);"><i class="fa fa-twitter"></i>Log in with Twitter</a>
 				</div>
+				
 				<%= session[:social_user_id] %>
-				<% if current_social_user %>
-				<%= link_to "Wyloguj się", social_users_destroy_path, method: :delete %>
-				<% end %>
+				<%= session[:comapny_name ]%>
+
 
 			</div>
 <!--
@@ -56,3 +57,4 @@
 		
 		<!-- Bootstrap js -->
 		<script src="assets/javascript/bootstrap.min.js"></script>
+

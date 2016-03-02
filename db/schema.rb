@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160301175425) do
     t.string   "facebook_uid"
     t.string   "twitter_uid"
     t.string   "social_uid"
+    t.string   "company_name"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

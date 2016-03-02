@@ -1,28 +1,25 @@
 class SocialUsersController < ApplicationController
 
   def new
-
+  	session[:company_name] = params[:id] 
   end
 
   def create
   	pass_token = Digest::SHA1.hexdigest([Time.now, rand].join)
-  	user = SocialUser.new(social_uid: pass_token )
-  	user.save
-  	session[:social_user_id] = user.social_uid 
-  	redirect_to social_users_show_path
+  	session[:social_user_id] = pass_token
+  	@facebook_data = request.env['omniauth.auth']
+  	SocialUser.find_or_create(session[:company_name], pass_token, @facebook_data)
+  	redirect_to root_path
   end
 
   def show
-  	if current_social_user
-  		render 'new'
-  	else
-  		redirect_to "http://localhost:3000/social_users/alibaba"
-  	end
+  	current_social_user
   end
 
   def destroy
-  	reset_session
-  	render 'new'
+  	SocialUser.find_by(social_uid: current_social_user.social_uid).destroy
+  	session[:social_user_id] = nil
 
+  	redirect_to root_path
   end
 end

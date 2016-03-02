@@ -1,2 +1,7 @@
-<h1>SocialUsers#show</h1>
-<p>Find me in app/views/social_users/show.html.erb</p>
+				<% if current_social_user %>
+				<%= link_to "Wyloguj się", social_users_destroy_path, method: :delete %>
+				<% end %>
+				<%= session[:company_name] %>
+				<%= params %>
+
+				<%= @facebook_data %>

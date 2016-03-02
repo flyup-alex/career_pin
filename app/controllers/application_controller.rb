@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
     @current_social_user ||= SocialUser.find_by(social_uid: session[:social_user_id]) if session[:social_user_id]
   end
   helper_method :current_social_user
+
+  def social_logged_in?
+  	!!current_social_user
+  end
+  
+  helper_method :social_logged_in?
+
 end
