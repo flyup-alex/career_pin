@@ -5,10 +5,11 @@ class SocialUsersController < ApplicationController
   end
 
   def create
-  	pass_token = Digest::SHA1.hexdigest([Time.now, rand].join)
-  	session[:social_user_id] = pass_token
+  	if session[:social_user_id].nil?
+  		session[:social_user_id] = Digest::SHA1.hexdigest([Time.now, rand].join)
+  	end
   	@facebook_data = request.env['omniauth.auth']
-  	SocialUser.find_or_create(session[:company_name], pass_token, @facebook_data)
+  	SocialUser.find_or_create(session[:company_name], session[:social_user_id], @facebook_data)
   	redirect_to root_path
   end
 

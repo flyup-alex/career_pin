@@ -1,7 +1,12 @@
 				<% if current_social_user %>
 				<%= link_to "Wyloguj się", social_users_destroy_path, method: :delete %>
 				<% end %>
+				<p>
 				<%= session[:company_name] %>
-				<%= params %>
+				</p>
+				<%= session[:social_user_id] %>
+				<p>				<%= params %>
+					</p>
 
-				<%= @facebook_data %>
+				<%= @current_social_user.social_uid if @current_social_user %>
+
