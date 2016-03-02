@@ -19,9 +19,12 @@
 
 
 </head>
+
 <body>
 
 <%= yield %>
-
+<% if company_signed_in? %>
+<%= link_to "Wyloguj się", social_users_destroy_path, method: :delete %>
+<% end %>
 </body>
 </html>

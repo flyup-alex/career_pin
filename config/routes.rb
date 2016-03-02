@@ -1,31 +1,30 @@
 Rails.application.routes.draw do
-
-  root 'social_users#new'
-  
-  get 'social_users/create'
-
-  delete 'social_users/destroy'
-
+  #Companies routes
+  root 'companies#welcome'
   devise_for :companies
-
-  resources :social_users
-
-  get 'timelines', to: 'social_users#show'
-
+  resources :companies
+  get 'company_logout', to: 'companies#destroy'
   
-
+  # Social Users routes - get ":id" should be always at the bottom.
+  get 'social_users/create'
+  delete 'social_users/destroy'
+  resources :social_users
+  get 'timelines', to: 'social_users#show'
+  get '/auth/facebook/callback', to: 'social_users#create'
+  get '/auth/twitter/callback', to: 'social_users#create'
+  get ':id', to: 'social_users#new'
   
 
   # facebook authentication routes
-  get '/auth/facebook/callback', to: 'social_users#create'
 
-  get '/auth/twitter/callback', to: 'social_users#create'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
 
-  get ':id', to: 'social_users#new'
+
   # root 'welcome#index'
 
   # Example of regular route:

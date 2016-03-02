@@ -9,12 +9,17 @@ include SocialUserHelper
   end
 
   def create
+
   	if session[:social_user_id].nil?
   		session[:social_user_id] = Digest::SHA1.hexdigest([Time.now, rand].join)
   	end
   	@facebook_data = request.env['omniauth.auth']
   	SocialUser.find_or_create(session[:company_name], session[:social_user_id], @facebook_data)
-  	redirect_to timelines_path
+  	if company_signed_in?
+      redirect_to root_path
+    else
+      redirect_to timelines_path
+    end
   end
 
   def show
@@ -38,9 +43,14 @@ include SocialUserHelper
   end
 
   def destroy
-  	SocialUser.find_by(social_uid: current_social_user.social_uid).destroy
-  	session[:social_user_id] = nil
-
-  	redirect_to root_path
+    if social_logged_in? 
+    	SocialUser.find_by(social_uid: current_social_user.social_uid).destroy
+    	session[:social_user_id] = nil
+    end
+    if company_signed_in?
+      redirect_to company_logout_path
+    else
+      redirect_to root_path
+    end
   end
 end
