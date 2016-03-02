@@ -12,4 +12,16 @@
 				<hr>
 			<% end %>
 	<% end %>
+	<% if @last_tweets %>
+		<div stlye"width: 600px; align: right;">
+			<% @last_tweets.each do |tweet| %>
+                <p><%= image_tag(tweet.user.profile_image_uri(size = :bigger)) %></p> 
+                <p><%= tweet.user.name %></p>
+                <p><time><%= time_ago_in_words(tweet.created_at) %> ago</time></p>
+                <p>Zdjęcie tweeta:<%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"]) if(tweet.media.present?)%>
+          		<div class="post-main-text"></p>
+            	<p>Treść tweeta:<%= tweet.text %></p>
+			<% end %>
+		</div>
+	<% end %>
 </div>

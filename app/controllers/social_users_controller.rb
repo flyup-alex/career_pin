@@ -26,11 +26,15 @@ include SocialUserHelper
                                 'picture','full_picture', 'object_id', 'link', 'created_time', 'updated_time', 'place', 'actions' 
 
                         ], limit: 20, :offset => "#{params[:times].to_i*2}"})
-  	elsif current_social_user.twitter_token.present?
-  				
-  	else
-  		redirect_to root_path
   	end
+  	
+  	if current_social_user.twitter_token.present?
+  		@last_tweets = twitter_pass.user_timeline(current_social_user.twitter_uid.to_i)		
+   	end
+
+   	if !current_social_user.twitter_token.present? && !current_social_user.facebook_token.present?
+   		redirect_to root_path
+   	end
   end
 
   def destroy
