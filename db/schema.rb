@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302193459) do
+ActiveRecord::Schema.define(version: 20160314123731) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "company_name"
+    t.string   "facebook_uid"
+    t.string   "twitter_uid"
+    t.string   "name"
+    t.string   "provider"
+    t.text     "text"
+    t.datetime "time"
+    t.string   "photo_url"
+    t.string   "link"
+    t.string   "author"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -45,6 +60,16 @@ ActiveRecord::Schema.define(version: 20160302193459) do
     t.string   "company_name"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "stalked_pages", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.string   "pageid"
+    t.integer  "company_id"
+    t.string   "provider"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

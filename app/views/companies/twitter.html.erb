@@ -1,0 +1,28 @@
+        <div class="user-container">
+
+				<div class="career-pin-conatiner-user">
+				
+				<div class="container-fluid brand-ambasadors">
+           
+					 <ul class="career-pin-admin">
+						<li>
+							Your employess posts
+						</li>
+					</ul>
+            <% @friends.each do |friend| %>
+            <div class="box">
+                <%= link_to twitter_show_path(friend) do %>
+                 <div class="profile-image">
+                   <!-- Getting normal image from twitter -->
+                   <% a = "#{friend.profile_image_url_https}"  %>
+                   <% a.slice!("_normal") %>
+                   <%= image_tag(a) %>
+                 </div>
+                 <div class="profile-name">
+                   <span class="text-center"><%= friend.name %></span>
+                 </div>      
+                <% end %>
+          </div>
+          <% end %>
+				</div><!-- /.career-pin-conatiner -->
+				</div>

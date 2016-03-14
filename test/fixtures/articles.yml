@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_name: MyString
+  facebook_uid: MyString
+  twitter_uid: MyString
+  name: MyString
+  provider: MyString
+  text: MyText
+  time: 2016-03-03 17:08:11
+
+two:
+  company_name: MyString
+  facebook_uid: MyString
+  twitter_uid: MyString
+  name: MyString
+  provider: MyString
+  text: MyText
+  time: 2016-03-03 17:08:11

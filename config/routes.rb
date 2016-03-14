@@ -1,9 +1,25 @@
 Rails.application.routes.draw do
+  get 'stalked_pages/index'
+
+  get 'stalked_pages/create'
+
+  get 'stalked_pages/destroy'
+
+  get 'articles/index'
+
+  get 'articles/createdestroy'
+
+  get 'articles/pinned'
+
   #Companies routes
   root 'companies#welcome'
-  devise_for :companies
+  devise_for :companies, :controllers => { registrations: 'registrations' }
   resources :companies
   get 'company_logout', to: 'companies#destroy'
+  get 'facebook', to: 'companies#facebook'
+  get 'facebook_show', to: 'companies#facebook_show'
+  get 'twitter', to: 'companies#twitter'
+  get 'twitter_show', to: 'companies#twitter_show'
   
   # Social Users routes - get ":id" should be always at the bottom.
   get 'social_users/create'
@@ -14,7 +30,8 @@ Rails.application.routes.draw do
   get '/auth/twitter/callback', to: 'social_users#create'
   get ':id', to: 'social_users#new'
   
-
+  #StalkedPages routes:
+  resources :stalked_pages
   # facebook authentication routes
 
 

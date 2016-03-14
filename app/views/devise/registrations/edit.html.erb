@@ -1,39 +1,129 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="user-container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="career-pin-conatiner-user">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+        <ul class="career-pin-admin">
+          <li>Your comapny information</li>
+        </ul>
+        
+        <div id="settings">   
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="field-wrap settings-info">
+              <label>Company name:</label>
+              <%= f.text_field :name %>
+            </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+            <div class="field-wrap settings-info">
+              <label>Phone number:</label>
+              <%= f.text_field :telephone %>
+            </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+            <div class="field-wrap settings-info">
+              <label>Cover image:</label>
+              <!--
+              <input type="file" required autocomplete="off" name="file" id="file" class="inputfile"/>
+              -->
+              <label for="file"> <span>Choose a file&hellip;</span></label>
+            </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+            <div class="field-wrap settings-info">
+              <label>Text:</label>
+              <textarea placeholder="Place your text here!" ></textarea>
+            </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+            <div class="field-wrap settings-info">
+              <label>Your link:</label>
+              <span id="copy-text" class="worker-link">career-pin.com/companyname/worker</span>
 
-<h3>Cancel my account</h3>
+            </div>
+            
+            <div class="field-wrap settings-info alt">
+              <label>Allow users see unpind posts:</label>
+              <div>
+                <input id="option" type="checkbox" name="field" value="option">
+                <label for="option"><span><span></span></span>Yes</label>
+              </div>
+            </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+            <div class="settings-buttons">
+
+              <button class="button button-block"/>Preview loggin site</button>
+
+              <%= button_tag(type: "submit", class: "button button-block" ) do %>
+              Save
+              <% end %>
+            </div>
+
+          <div class="field-wrap settings-info">
+              <label>Your plan:</label>
+            <div class="example">
+              <div>
+                <%= f.radio_button(:price, "0",) %>
+                <%= f.label(:price_0) do %>
+                <span><span></span></span>Free
+                <% end %>
+              </div>
+              <div>
+                <%= f.radio_button(:price, "99") %>
+                <%= f.label(:price_99) do %>
+                <span><span></span></span>Standard
+                <% end %>
+              </div>
+              <div>
+                <%= f.radio_button(:price, "399") %>
+                <%= f.label(:price_399) do %>
+                <span><span></span></span>Premium
+                <% end %>
+              </div>
+            </div>
+        </div><!-- /.career-pin-conatiner -->
+
+
+          <div class="admin-options">
+            
+            
+                <div id="change-password">   
+
+                  <div class="field-wrap">
+                    <%= f.email_field :email, autofocus: true %>
+                  </div>
+
+                  <div class="field-wrap">
+                    <%= f.password_field :password, autocomplete: "off", placeholder: "new password" %>
+                  </div>
+
+                  <div class="field-wrap">
+                    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "password confirmation" %>
+                  </div>
+
+                  <div class="field-wrap">
+                    <%= f.password_field :current_password, autocomplete: "off", placeholder: "current password" %>
+                  </div>
+                  <% end %>
+
+<p>Unhappy?</p>
+<p>Please give us some info about your feelings according to this product. </p>
+
+  <%= button_to "Cancel my account", registration_path(resource_name), class: "button button-block", data: { confirm: "Are you sure?" }, method: :delete %>
 
 <%= link_to "Back", :back %>
+
+                </div>
+        
+          </div>
+          
+          
+          
+          
+        </div>
+
+
+
+
+
+
+
+
+

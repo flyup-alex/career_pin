@@ -1,0 +1,78 @@
+<div class="user-container">
+
+			<div class="career-pin-conatiner-user">
+				<ul class="career-pin-preview">
+					<li>Your Facebook posts</li>
+					<% autor_photo = @graph.get_picture(@feed.first['from']['id'], type: :large) %>
+					<% @feed.each do |post| %>
+						<% if post['full_picture'].nil? %>
+						 <li class="facebook-list">
+						<% else %>
+						 <li>
+						<% end %>
+							<div class="cp-2">
+								<a target="blank" href=<%= "http://facebook.com/#{post['id']}" %>>
+									<div class="cp-image">
+										<%= image_tag(post['full_picture'], class: "myBackgroundImage") %>
+									</div>
+									<div class="cp-social">
+										<i class="fa fa-facebook"></i>
+									</div>
+									<div class="cp-button preview">
+										<%= button_to root_path, class: "submit" do%>
+										 <i class="fa fa-plus"></i>
+										<% end %>
+									</div>
+									<div class="cp-allweys">
+										<div class="cp-author-image">
+											<% %>
+											<%= image_tag( autor_photo )%>
+										</div>
+										<div class="cp-text">
+											<p>
+												<%= post['message'].first(100) + "..." if post['message'] %>
+											</p>
+											<div class="cp-data">
+												<span class="cp-autor"><%= post['from']['name']%></span>
+												<time><%= time_ago_in_words(post['updated_time'])%> ago</time>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+
+				
+
+
+			</div><!-- /.career-pin-conatiner -->
+
+				<div class="admin-options">
+					<div class="admin-stats">
+						<% if current_company.stalked_pages.where(:pageid => params[:id] ).first %>
+						 <%= button_to stalked_page_path(params[:id]), class: " button", method: :delete do %>
+							Unfollow
+						 <% end %>
+						<% else %>
+							<%= form_for(@stalked_page) do |f| %>
+							<%= f.hidden_field(:name, :value => @feed.first['from']['name']) %>
+							<%= f.hidden_field(:pageid, :value => params[:id]) %>
+							<%= f.hidden_field(:image_url, :value => autor_photo) %>
+							<%= f.hidden_field(:company_id, :value => current_company.id) %>
+							<%= f.hidden_field(:provider, :value => "facebook") %>
+
+
+							<h6>Follow this page to get a quick acces to new posts.</h6>
+
+							<div class="stats">
+								<%= button_to type: "submit", class: "button" do %>
+								Follow
+								<% end %>
+							</div>
+						<% end %>
+					</div>
+					<% end %>
+				</div><!-- /.admin-options -->
+		</div><!-- /.user-container -->

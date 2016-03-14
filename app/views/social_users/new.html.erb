@@ -1,4 +1,4 @@
-<section>
+<section id="career-image">
 			<div class="company-image">
 				
 				
@@ -17,23 +17,20 @@
 			--><div class="worker-login">
 			
 				<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
-			<% if !social_logged_in? %>
+			
+				<% if !social_logged_in? %>
 				<div class="worker-social">
 					<%= link_to 'auth/facebook', class: "btn btn-block btn-social btn-lg btn-facebook" do %>
 					<i class="fa fa-facebook-official"></i>Log in with Facebook
 					<% end %>
 				</div>	
-			<% end %>
+				<% end %>
 				<div class="worker-social">
 					<%= link_to 'auth/twitter', class:"btn btn-block btn-social btn-lg btn-twitter" do %>
 					<i class="fa fa-twitter"></i>Log in with Twitter
 					<% end %>
 				</div>
 				
-				<%= session[:social_user_id] %>
-				<%= session[:comapny_name ]%>
-
-
 			</div>
 <!--
 					<div class="col-md-6">
@@ -50,13 +47,4 @@
 						</form>
 					</div>
 -->
-				
-
-		</section>
-
-		<!-- jQuery -->
-		<script src="assets/javascript/jquery.min.js"></script>
-		
-		<!-- Bootstrap js -->
-		<script src="assets/javascript/bootstrap.min.js"></script>
-
+</section>

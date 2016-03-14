@@ -1,0 +1,60 @@
+<div class="user-container">
+
+			<div class="career-pin-conatiner-user">
+
+				<div class="container-fluid brand-ambasadors">
+
+				<ul class="career-pin-admin">
+					<li>Facebook likes</li>
+				</ul>
+				<% @pages.each do |page| %>
+					<div class="box">
+						<%= link_to facebook_show_path(page) do %>
+							<div class="profile-image">
+								<%= image_tag( @graph.get_picture( page['id'], type: :large) ) %>
+							</div>
+							<div class="profile-name">
+								<span class="text-center"><%= page['name']%></span>
+							</div>
+								<!--
+								<div class="number-of-posts">
+									<%= link_to root_path do %>
+									 ten przycisk służy do dodawania profili do ulubionych - wtedy pojawiają się z prawej strony od razu i nie trzeba ich szukać
+									<span><i class="fa fa-pause-circle"></i></span>
+
+									<% end %>
+								</div>
+								 -->
+
+						<% end %>            
+					</div>
+				<% end %>
+			</div><!-- /.career-pin-conatiner -->
+			</div>
+
+
+				<div class="admin-options">
+					<div class="admin-stats">
+						           
+					</div>
+					
+					<h2>Followed pages:</h2>
+
+					<div class="stats">
+
+						<div class="stat-box">
+							<h3>Visited</h3>
+							<p>1784</p>
+						</div>
+
+						<div class="stat-box">
+							<h3>Interactions</h3>
+							<p>1242</p>
+						</div>
+
+					</div>
+					
+					</div>
+				</div><!-- /.admin-options -->
+			</div>
+		</div>

@@ -1,26 +1,260 @@
-<h2>Log in</h2>
+    
+    <section id="career-image">
+    
+      <div class="career-image">
+        <div class="company-text-left">
+          <h3>Ludzka strona firmy</h3>
+          <p>
+            career-pin to narzędzie, które w minutę zmieni Twoją zakładkę kariera w social mediowe centrum informacji dla kandydatów i pracowników. Uploaduj aktywności z różnych kanałów social media. Pozwól zgłaszać różne wiadomości swoim pracownikom i twórz miejsce, w którym dokładnie zaprezentujesz kulturę organizacyjną swojej firmy. Pokaż ludzką stronę firmy! 
+          </p>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+      </div><!--
+      
+      --><div id="log-in">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <div class="company-login">
+        
+          <h2>career-pin</h2>
+          
+          <div id="login">   
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
+            <div id="login">   
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="field-wrap">
+              <%= f.email_field :email, autofocus: true, placeholder: "Email"%>
+            </div>
+            <div class="field-wrap">
+              <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+            </div>
+                <%= f.submit "Log in", class: "button button-block" %>
+            <% end %>
+          </div>
+          <a href="#sign">Sign Up</a></br>
+          <%= render "devise/shared/links" %>
+      </div>
+      
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+    </section>  
+    
+    <section id="career-careerpin">
+    
+      <div class="section-2-text">
+
+          <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+          
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, ullam, odit! Incidunt iure et voluptatem consequatur recusandae dolor vero deserunt at nesciunt, iusto neque non consectetur modi molestias maiores asperiores.</p>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione blanditiis sequi quod dolore quis adipisci tempora laudantium numquam asperiores obcaecati id iure dolorum labore, sed excepturi! Eum aliquam facilis aspernatur.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam quisquam eos voluptatem doloremque magni error unde tenetur ipsa aliquid. Quos nisi iste adipisci vero, voluptas dolor. Deleniti architecto recusandae praesentium!</p>
+      
+      </div><!--
+      
+      --><div class="section-2-image">
+
+      
+      </div>
+
+
+    </section>  
+
+    
+    <section id="what-we-do">
+     <div class="section-content">
+       <div class="container">
+         <h4>Lorem ipsum dolor sit amet</h4>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui accusantium commodi non quod mollitia animi, totam quia labore ex est ut delectus consectetur explicabo eveniet maiores, cumque aut repudiandae. Natus!</p>
+
+         <div class="row">
+           <div class="col-sm-4">
+              <%= image_tag("worker_login.jpg", alt: "placeholder", class: "circle") %>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+           </div>
+           <div class="col-sm-4">
+              <%= image_tag("worker_login.jpg", alt: "placeholder", class: "circle") %>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+           </div>
+           <div class="col-sm-4">
+              <%= image_tag("worker_login.jpg", alt: "placeholder", class: "circle") %>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-sm-4">
+              <%= image_tag("worker_login.jpg", alt: "placeholder", class: "circle") %>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+           </div>
+           <div class="col-sm-4">
+              <%= image_tag("worker_login.jpg", alt: "placeholder", class: "circle") %>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+           </div>
+           <div class="col-sm-4">
+              <%= image_tag("worker_login.jpg", alt: "placeholder", class: "circle") %>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+           </div>
+         </div>
+       </div>
+     </div>
+    </section>
+
+    
+    <section class="section-left">
+        <div class="section-content">
+            <div class="container">
+                <div class="col-md-6">
+                    <div class="about-text">
+                        <h3>About me</h3>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima culpa nostrum voluptates praesentium quia, quae, dolor aperiam possimus architecto, tempore unde! Quasi fugit voluptate, maiores adipisci commodi nemo rem cumque.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eum mollitia sit dolorem autem qui possimus ex voluptate, voluptatibus iste unde numquam illum, molestiae reprehenderit, eligendi. Illum quod esse voluptatibus.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <%= image_tag("worker_login.jpg", alt: "placeholder", class: "section-left-image") %>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="section-right">
+        <div class="section-content">
+            <div class="container">
+            
+               <div class="col-md-6">
+                  <%= image_tag("worker_login.jpg", alt: "placeholder", class: "section-right-image") %>
+                </div>
+                <div class="col-md-6">
+                    <div class="about-text">
+                        <h3>About me</h3>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima culpa nostrum voluptates praesentium quia, quae, dolor aperiam possimus architecto, tempore unde! Quasi fugit voluptate, maiores adipisci commodi nemo rem cumque.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eum mollitia sit dolorem autem qui possimus ex voluptate, voluptatibus iste unde numquam illum, molestiae reprehenderit, eligendi. Illum quod esse voluptatibus.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section id= "sign" class="pricing">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="pricing-box pricing-box-1">
+              <h1>Free</h1>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              
+              <h2>$0</h2>
+              <p>per user/month</p>
+              
+              <%= link_to "Try",  new_company_registration_path(:pricing => 0) %>
+            </div><!--
+            --><div class="pricing-list pricing-list-1">
+              <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="pricing-box pricing-box-2">
+              <h1>Regular</h1>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              
+              <h2>$50</h2>
+              <p>per user/month</p>
+              
+              <%= link_to "Try",  new_company_registration_path(:pricing => 99), class: "buttonrails"  %>
+            </div><!--
+            --><div class="pricing-list pricing-list-2">
+              <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+              </ul>
+            </div>
+            
+          </div>
+          <div class="col-md-4">
+            <div class="pricing-box pricing-box-3">
+              <h1>Premium</h1>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              
+              <h2>$75</h2>
+              <p>per user/month</p>
+              
+              <%= link_to "Try",  new_company_registration_path(:pricing => 399), class: "buttonrails" %>
+            </div><!--
+            --><div class="pricing-list pricing-list-3">
+              <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <section id="signup">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+  
+            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+            
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero atque recusandae enim eius maiores sequi, deleniti inventore molestias ratione quo velit qui vel dignissimos quos blanditiis, consectetur, officia quod eum!</p>
+
+            <form action="/" method="post" class="newsletter">
+            
+              <div class="inline-form">
+                <input type="email"required autocomplete="off" placeholder="Email"/>
+
+                <input type="text"required autocomplete="off" placeholder="Number"/>
+
+                <button class="button-alt button-block"/>Submit</button>
+
+              </div>
+
+            </form>
+
+        
+          </div>
+
+        </div>
+      </div>
+    </section>
+    
+    <footer id="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 social-contact">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                </div>
+                <div class="col-sm-3 col-sm-offset-2">
+                  <h4>Aleksander Nowak</h4>
+                  <h5><i class="fa fa-phone"></i>51046354</h5>
+                  <h5><i class="fa fa-envelope"></i>aleks@flyup.pro</h5>
+                </div>
+                <div class="col-sm-2 col-sm-offset-2">
+                  <a href="mailto:flyup.pro">&reg; FlyUp.pro</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="assets/javascript/jquery.min.js"></script>
+    
+    <!-- Bootstrap js -->
+    <script src="assets/javascript/bootstrap.min.js"></script>
+    
+

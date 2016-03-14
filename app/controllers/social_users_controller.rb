@@ -31,6 +31,10 @@ include SocialUserHelper
                                 'picture','full_picture', 'object_id', 'link', 'created_time', 'updated_time', 'place', 'actions' 
 
                         ], limit: 20, :offset => "#{params[:times].to_i*2}"})
+      #get liked_pages -> return id's of these pages
+      @pages = @graph.get_connection( "me" , 'likes',
+                    {fields: ['id'], limit: 20, :offset => "#{params[:times].to_i*2}"})
+      
   	end
   	
   	if current_social_user.twitter_token.present?
@@ -44,7 +48,6 @@ include SocialUserHelper
 
   def destroy
     if social_logged_in? 
-    	SocialUser.find_by(social_uid: current_social_user.social_uid).destroy
     	session[:social_user_id] = nil
     end
     if company_signed_in?

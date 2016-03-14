@@ -1,29 +1,98 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<section id="career-image">
+  <div class="company-image">
+    <div class="company-layout">
+      <div class="company-logo">
+        <%= image_tag("nestle-logo-150-EN.png", alt: "Nestle") %>
+      </div>
+      <div class="company-text">
+        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia tenetur iste porro laborum nam velit cum ea placeat perspiciatis eaque, aliquam facilis quo odio aliquid! Est possimus numquam, quaerat inventore.
+        </p>
+      </div>
+    </div>
   </div>
+  <div class="admin-logout">
+      
+    <div id="admin-logout">   
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+      <div id="settings"> 
+
+        <h2>Your comapny information</h2>  
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+          
+          <div class="field-wrap settings-info">
+            <%= f.label "Company name" %><br />
+            <%= f.text_field :name, placeholder: "company name" %>
+          </div>
+
+          <div class="field-wrap settings-info">
+           <%= f.label "Company email" %><br />
+           <%= f.email_field :email, placeholder: "mail" %>
+          </div>
+
+          <div class="field-wrap settings-info">
+            <label>Phone number:</label>
+            <%= f.telephone_field :telephone, placeholder: "telephone number" %>
+          </div>
+
+          <div class="field-wrap settings-info">
+            <%= f.label "Password" %>
+            <%= f.password_field :password, autocomplete: "off", placeholder: "password" %>
+          </div>
+
+          <div class="field-wrap settings-info">
+            <%= f.label "Confirm password" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "confirm password" %>
+          </div>
+
+          <div class="field-wrap settings-info">
+            <label>Your plan:</label>
+              <div class="example">
+              <div>
+                <% if params[:pricing] == "0" %>
+                  <%= f.radio_button(:price, "0", checked: true) %>
+                <% else %>
+                  <%= f.radio_button(:price, "0",) %>
+                <% end %>
+                <%= f.label(:price_0) do %>
+                <span><span></span></span>Free
+                <% end %>
+              </div>
+              <div>
+                <% if params[:pricing] == "99" %>
+                  <%= f.radio_button(:price, "99", checked: true) %>
+                <% else %>
+                  <%= f.radio_button(:price, "99") %>
+                <% end %>
+                <%= f.label(:price_99) do %>
+                <span><span></span></span>Standard
+                <% end %>
+              </div>
+              <div>
+                <% if params[:pricing] == "399" %>
+                  <%= f.radio_button(:price, "399", checked: true) %>
+                <% else %>
+                  <%= f.radio_button(:price, "399") %>
+                <% end %>
+                <%= f.label(:price_399) do %>
+                <span><span></span></span>Premium
+                <% end %>
+              </div>
+              </div>
+
+          </div>
+          
+          <div class="settings-buttons">
+            <%= button_tag(type: 'submit', class: "button button-block") do %>
+              SignUp
+            <% end %>
+         </div>
+          <br><center><%= render "devise/shared/links" %></center>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>
