@@ -12,33 +12,7 @@ $(document).ready(function() {
 	var height = $(window).height() - $(".social-button-twitter").outerHeight( true );
 	$(".login-button-twitter").css("height", height);
 	
-	// check if p has more than 90 characters and leaves only 90
-	$( ".cp-2 .cp-text p" ).each(function() {
-		if($(this).text().length > 90){
-			var str = $(this).text(),
-					res = str.substring(0, 89);
-			console.log(res);
-			$(this).html(res+"...");
-		} else {
-			$(this).html();
-		}
-	});
 	
-		// check if p has more than 200 characters and leaves only 200
-	$( ".cp-4 .cp-text p" ).each(function() {
-		if($(this).text().length > 200){
-			var str = $(this).text(),
-					res = str.substring(0, 199);
-			console.log(res);
-			$(this).html(res+"...");
-		} else {
-			$(this).html();
-		}
-	});
-	
-
-	
-});
 
 	// custom file input 
 	/*

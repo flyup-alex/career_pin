@@ -11,7 +11,7 @@
 					</ul>
             <% @friends.each do |friend| %>
             <div class="box">
-                <%= link_to twitter_show_path(friend) do %>
+                <%= link_to twitter_show_path(:name => friend.screen_name) do %>
                  <div class="profile-image">
                    <!-- Getting normal image from twitter -->
                    <% a = "#{friend.profile_image_url_https}"  %>
@@ -19,7 +19,7 @@
                    <%= image_tag(a) %>
                  </div>
                  <div class="profile-name">
-                   <span class="text-center"><%= friend.name %></span>
+                   <span class="text-center"><%= friend.screen_name %></span>
                  </div>      
                 <% end %>
           </div>

@@ -1,79 +1,70 @@
+
+
+<% author_photo = @last_tweets.first.user.profile_image_uri(size = :bigger) %>
+<% user_name = @last_tweets.first.user.name %>
+<% screen_name = @last_tweets.first.user.screen_name %>
 <div class="user-container">
 
       <div class="career-pin-conatiner-user">
         <ul class="career-pin-preview">
           <li>Your Twitter posts</li>
-          
-          <li>
-            <div class="cp-2">
-              <a target="blank" href="www.facebook.com/50063176484_10153381528596485">
-                <div class="cp-image">
-                  <img class="myBackgroundImage" src="assets/images/placeholder13-web.jpg" alt="">
-                </div>
-                <div class="cp-social">
-                  <i class="fa fa-twitter"></i>
-                </div>
-                <div class="cp-button preview">
-                  <button class="submit"><i class="fa fa-plus"></i></button>
-                </div>
-                <div class="cp-allweys">
-                  <div class="cp-author-image">
-                    <img src="assets/images/worker_login.jpg" alt="Author image">
+            <% @last_tweets.each do |tweet| %>
+            <% if tweet.media.present? %>
+             <li>
+            <% else %>
+             <li class="twitter-list">
+            <% end %>
+              <div class="cp-2">
+                <a target="blank" href="www.facebook.com/50063176484_10153381528596485">
+                  <div class="cp-image">
+                    <%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"], class: "myBackgroundImage") if(tweet.media.present?)%>
+
                   </div>
-                  <div class="cp-text">
-                    <p>
-                      Michał Żak i Michał Kelles-Krauz swoją przygodę z prowadzeniem własnej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium fugit tenetur aut...
-                    </p>
-                    <div class="cp-data">
-                      <span class="cp-autor">Cris Cris</span>
-                      <time>15 days ago</time>
+                  <div class="cp-social">
+                    <i class="fa fa-twitter"></i>
+                  </div>
+                  <div class="cp-button preview">
+                    <button class="submit"><i class="fa fa-plus"></i></button>
+                  </div>
+                  <div class="cp-allweys">
+                    <div class="cp-author-image">
+                      <%= image_tag(author_photo) %>
+                    </div>
+                    <div class="cp-text">
+                      <p>
+                        <%= tweet.text.first(140) %>
+                      </p>
+                      <div class="cp-data">
+                        <span class="cp-autor"><%= user_name %></span>
+                        <time><%= time_ago_in_words(tweet.created_at) %> ago</time>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            </div>
-          </li>
+                </a>
+              </div>
+            </li>
+          <% end %>
           
-          <li class="twitter-list">
-            <div class="cp-2">
-              <a target="blank" href="www.facebook.com/50063176484_10153381528596485">
-                <div class="cp-image">
-
-                </div>
-                <div class="cp-social">
-                  <i class="fa fa-twitter"></i>
-                </div>
-                <div class="cp-button preview">
-                  <button class="submit"><i class="fa fa-plus"></i></button>
-                </div>
-                <div class="cp-allweys">
-                  <div class="cp-author-image">
-                    <img src="assets/images/worker_login.jpg" alt="Author image">
-                  </div>
-                  <div class="cp-text">
-                    <p>
-                      Michał Żak i Michał Kelles-Krauz swoją przygodę z prowadzeniem własnej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium fugit tenetur aut...
-                    </p>
-                    <div class="cp-data">
-                      <span class="cp-autor">Cris Cris</span>
-                      <time>15 days ago</time>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </li>
-          
-        </ul>
-
-        
-
-
       </div><!-- /.career-pin-conatiner -->
 
         <div class="admin-options">
           <div class="admin-stats">
-          
+            <% if current_company.stalked_pages.where( pageid: screen_name ).first %>
+              <%= button_to stalked_page_path(params[:name]), class: "button", method: :delete do %>
+                Unfollow
+              <% end %>
+            <% else %>
+              <%= form_for(@stalked_page) do |f| %>
+              <%= f.hidden_field(:name, :value => user_name ) %>
+              <%= f.hidden_field(:pageid, :value => screen_name) %>
+              <%= f.hidden_field(:image_url, :value => author_photo) %>
+              <%= f.hidden_field(:company_id, :value => current_company.id) %>
+              <%= f.hidden_field(:provider, :value => "twitter") %>
+              <%= button_to type: "submit", class: "button" do %>
+                Follow
+                <% end %>
+              <% end %>
+            <% end %>
           <h2>Lorem ipsum dolores sit amet</h2>
 
           <div class="stats">
