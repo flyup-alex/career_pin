@@ -1,5 +1,12 @@
+<!--..........................
+
+
+ Menu for social_users_only 
+
+ ............................-->
+
 		<% if !current_company %>
-		<header>
+		 <header>
 			<nav class="admin-options-logout">
 				<%= link_to social_users_destroy_path, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Signout", method: :delete do %>
 				<i class="fa fa-sign-out"></i></a>
@@ -14,14 +21,22 @@
 				<%= link_to timelines_path(:provider => "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
 					<i class="fa fa-facebook-official"></i>
 				<% end %>
-				<a class="worker-logout" data-toggle="tooltip" data-placement="bottom" title="Employers' posts"><i class="fa fa-users"></i></a>
+				<%= link_to career_path, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Employers' posts" do %>
+				 <i class="fa fa-users"></i>
+				<% end %>
 			</nav>
-		</header>
+		 </header>
 		<% end %>
+<!--..........................
+
+
+Posts from social FACEBOOK  
+
+ ............................-->
 
 		<div class="user-container">
 			<% if params[:provider] == "facebook"%>
-			<div class="career-pin-conatiner-user">
+			 <div class="career-pin-conatiner-user">
 				<ul class="career-pin-preview">
 					<li>Your Facebook posts</li>
 					<% autor_photo = @graph.get_picture(@feed.first['from']['id'], type: :large) %>
@@ -40,7 +55,13 @@
 										<i class="fa fa-facebook"></i>
 									</div>
 									<div class="cp-button preview">
-										<%= form_for(@pin) do |f| %>
+		<!--..........................
+
+		Adding pin to all pins of the social user
+
+		 ............................-->
+
+<%= form_for(@pin) do |f| %>
 <%= f.hidden_field(:author_image, :value => autor_photo) %>
 <%= f.hidden_field(:link, :value => "http://facebook.com/#{post['id']}" ) %>
 <%= f.hidden_field(:provider, :value => "facebook") %>
@@ -50,11 +71,13 @@
 <%= f.hidden_field(:creation_time, :value => post['updated_time']) %>
 <%= f.hidden_field(:social_user_id, :value => current_social_user.id ) %>
 <%= f.hidden_field(:company_id, :value => current_company.id) if current_company %>
-<%= f.hidden_field(:company_name, :value => current_company.name ) if current_company %>
+<%= f.hidden_field(:company_name, :value => session[:company_name] ) %>
 <%= button_to root_path, type: "submit", class: "submit" do%>
  <i class="fa fa-plus"></i>
 <% end %>
 										<% end %>
+
+
 
 									</div>
 
@@ -78,11 +101,31 @@
 						</li>
 					<% end %>
 				</ul>
-			<% end %>
-		<% if params[:provider] == "twitter" %>
-		<% author_photo = @last_tweets.first.user.profile_image_uri(size = :bigger) %>
-<% user_name = @last_tweets.first.user.name %>
-<% screen_name = @last_tweets.first.user.screen_name %>
+		
+
+<%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
+					<i class="fa fa-twitter"></i>
+				 <% end %>
+				<%= link_to "1", timelines_path( :times => 0, :provider => params[:provider]) %>
+				<%= link_to "2", timelines_path( :times => 1, :provider => params[:provider]) %>
+				<%= link_to "3", timelines_path( :times => 2, :provider => params[:provider]) %>
+				<%= link_to "4", timelines_path( :times => 3, :provider => params[:provider]) %>
+				<%= link_to "5", timelines_path( :times => 4, :provider => params[:provider]) %>
+				
+	<% end %>
+
+<!--..........................
+
+
+Posts from social TWITTER  
+
+ ............................-->
+
+<% if params[:provider] == "twitter" %>
+	<% author_photo = @last_tweets.first.user.profile_image_uri(size = :bigger) %>
+	<% user_name = @last_tweets.first.user.name %>
+	<% screen_name = @last_tweets.first.user.screen_name %>
+
 		<div class="career-pin-conatiner-user">
         <ul class="career-pin-preview">
           <li>Your Twitter posts</li>
@@ -95,14 +138,40 @@
               <div class="cp-2">
                 <a target="blank" href=<%="#{tweet.uri}"%>>
                   <div class="cp-image">
-                    <%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"], class: "myBackgroundImage") if(tweet.media.present?)%>
+                    <%= image_tag(tweet.media[0]["media_url"], class: "myBackgroundImage") if(tweet.media.present?)%>
+
 
                   </div>
                   <div class="cp-social">
                     <i class="fa fa-twitter"></i>
                   </div>
                   <div class="cp-button preview">
-                    <button class="submit"><i class="fa fa-plus"></i></button>
+
+        <!--..........................
+
+		Adding pin to all pins of the social user
+
+		.............................-->
+
+		<%= form_for(@pin) do |f| %>
+<%= f.hidden_field(:author_image, :value => author_photo) %>
+<%= f.hidden_field(:link, :value => "#{tweet.uri}" ) %>
+<%= f.hidden_field(:provider, :value => "twitter") %>
+<%= f.hidden_field(:image, :value => tweet.media[0]["media_url"] ) if tweet.media.present? %>
+<%= f.hidden_field(:author_name, :value => user_name ) %>
+<%= f.hidden_field(:message, :value => tweet.text) %>
+<%= f.hidden_field(:creation_time, :value => tweet.created_at ) %>
+<%= f.hidden_field(:social_user_id, :value => current_social_user.id ) %>
+<%= f.hidden_field(:company_id, :value => current_company.id) if current_company %>
+<%= f.hidden_field(:company_name, :value => session[:company_name] )%>
+<%= button_to root_path, type: "submit", class: "submit" do%>
+ <i class="fa fa-plus"></i>
+<% end %>
+<% end %>
+
+
+
+
                   </div>
                   <div class="cp-allweys">
                     <div class="cp-author-image">
@@ -124,7 +193,16 @@
             </li>
           <% end %>
           <% end %>
+
+
 			</div><!-- /.career-pin-conatiner -->
+
+		<!--..........................
+
+		Facebook part of view - is visible only for facebook logged in 
+
+		.............................-->
+
 
 				<% if params[:provider] == "facebook" %>
 				<div class="worker-options">
@@ -133,18 +211,17 @@
 
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
 
-				
-				<%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
+				<% if current_company %>
+				 <%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
 					<i class="fa fa-twitter"></i>
 				 <% end %>
-				<%= link_to "1", timelines_path( :times => 0, :provider => params[:provider]) %>
-				<%= link_to "2", timelines_path( :times => 1, :provider => params[:provider]) %>
-				<%= link_to "3", timelines_path( :times => 2, :provider => params[:provider]) %>
-				<%= link_to "4", timelines_path( :times => 3, :provider => params[:provider]) %>
-				<%= link_to "5", timelines_path( :times => 4, :provider => params[:provider]) %>
-				
-				</div>
 				<% end %>
+				 				<% end %>
+		<!--..........................
+
+		 Twitter part of view - is visible only for twitter logged in 
+
+		.............................-->
 
 				<% if params[:provider] == "twitter" %>
 				<div class="worker-options">
@@ -153,13 +230,65 @@
 
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
 
-				
-				<%= link_to timelines_path(:provider => "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Facebook" do %>
+				<% if current_company %>
+				 <%= link_to timelines_path(:provider => "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Facebook" do %>
 					<i class="fa fa-facebook-official"></i>
+				 <% end %>
 				<% end %>
 				
-				<% end %>	
+				<% end %>
+
+
+		<!--..........................
+
+		 All added Pins from social_user 
+
+		.............................-->
+				<ul class="user-right">
+				 <% @pins.each do |pin| %>
+				 	<% if pin.image.nil? || pin.image.empty? %>
+				 	 <li class=<%="#{params[:provider]}-list"%>>
+				 	<% else %>
+					 <li>
+					<% end %>
+						<div class="cp-2">
+							<a target="blank" href="www.facebook.com/50063176484_10153381528596485">
+							<div class="cp-image">
+								<%= image_tag( pin.image, class: "myBackgroundImage") %>
+							</div>
+							<div class="cp-social">
+								<% if pin.provider == "facebook" %>
+								 <i class="fa fa-facebook"></i>
+								<% elsif pin.provider == "twitter"
+									%>
+								 <i class="fa fa-twitter"></i>
+								<% end %>
+							</div>
+							<div class="cp-button">
+								<button class="submit"><i class="fa fa-trash"></i></button>
+							</div>
+							<div class="cp-allweys">
+								<div class="cp-author-image">
+									<%= image_tag( pin.author_image ) %>
+								</div>
+								<div class="cp-text">
+									<p>
+									<%= pin.message %>
+									</p>
+									<div class="cp-data">
+										<span class="cp-autor"><%= pin.author_name %></span>
+										<time><%= time_ago_in_words( pin.creation_time )%></time>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				 </li>
+				<% end %>
+				</ul>
+						
 			</div>
+
 
 
 	

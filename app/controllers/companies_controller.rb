@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
 include SocialUserHelper
 
   def welcome
-    session[:company_name] = "Wedel"
+    session[:company_name] = current_company.name
   end
 
   def facebook

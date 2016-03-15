@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'twitter_show', to: 'companies#twitter_show'
   
   # Social Users routes - get ":id" should be always at the bottom.
+  get 'career', to: 'social_users#career_pins'
   get 'social_users/create'
   delete 'social_users/destroy'
   resources :social_users

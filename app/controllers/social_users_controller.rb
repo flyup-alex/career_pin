@@ -22,7 +22,7 @@ include SocialUserHelper
   	if company_signed_in?
       redirect_to root_path
     else
-      redirect_to timelines_path
+      redirect_to career_path
     end
   end
 
@@ -45,6 +45,15 @@ include SocialUserHelper
    		redirect_to root_path
    	end
     @pin = Pin.new
+    if params[:provider] == "twitter"
+     @pins = current_social_user.pins.where(provider: "twitter").order(created_at: :desc)
+    elsif params[:provider] == "facebook"
+     @pins = current_social_user.pins.where(provider: "facebook").order(created_at: :desc)
+    end
+  end
+
+  def career_pins
+    
   end
 
   def destroy

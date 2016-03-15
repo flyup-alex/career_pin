@@ -1,0 +1,22 @@
+		<% if !current_company %>
+		 <header>
+			<nav class="admin-options-logout">
+				<%= link_to social_users_destroy_path, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Signout", method: :delete do %>
+				<i class="fa fa-sign-out"></i></a>
+				<% end %>
+				<% if current_social_user.twitter_token %>
+				 <%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
+					<i class="fa fa-twitter"></i>
+				 <% end %>
+				<% else %>
+				<a class="worker-logout" data-toggle="tooltip" data-placement="bottom" title="Employers' posts"><i class="fa fa-users"></i></a>
+				<% end %>
+				<%= link_to timelines_path(:provider => "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
+					<i class="fa fa-facebook-official"></i>
+				<% end %>
+				<%= link_to career_path, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Employers' posts" do %>
+				 <i class="fa fa-users"></i>
+				<% end %>
+			</nav>
+		 </header>
+		<% end %>
