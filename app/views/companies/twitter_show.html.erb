@@ -17,14 +17,31 @@
               <div class="cp-2">
                 <a target="blank" href="www.facebook.com/50063176484_10153381528596485">
                   <div class="cp-image">
-                    <%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"], class: "myBackgroundImage") if(tweet.media.present?)%>
+                    <%= image_tag(tweet.media[0]["media_url"], class: "myBackgroundImage") if(tweet.media.present?)%>
 
                   </div>
                   <div class="cp-social">
                     <i class="fa fa-twitter"></i>
                   </div>
                   <div class="cp-button preview">
-                    <button class="submit"><i class="fa fa-plus"></i></button>
+                      
+<%= form_for(@pin) do |f| %>
+<%= f.hidden_field(:author_image, :value => author_photo) %>
+<%= f.hidden_field(:link, :value => "#{tweet.uri}" ) %>
+<%= f.hidden_field(:provider, :value => "twitter") %>
+<%= f.hidden_field(:image, :value => tweet.media[0]["media_url"] ) if tweet.media.present? %>
+<%= f.hidden_field(:author_name, :value => user_name ) %>
+<%= f.hidden_field(:message, :value => tweet.text) %>
+<%= f.hidden_field(:creation_time, :value => tweet.created_at ) %>
+<%= f.hidden_field(:social_user_id, :value => current_social_user.id ) %>
+<%= f.hidden_field(:company_id, :value => current_company.id) if current_company %>
+<%= f.hidden_field(:company_name, :value => session[:company_name] )%>
+<%= button_to root_path, type: "submit", class: "submit" do%>
+ <i class="fa fa-plus"></i>
+<% end %>
+<% end %>
+
+
                   </div>
                   <div class="cp-allweys">
                     <div class="cp-author-image">

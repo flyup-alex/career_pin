@@ -4,6 +4,9 @@ include SocialUserHelper
 
   def welcome
     session[:company_name] = current_company.name
+
+    @pins = Pin.where(company_name: current_company.name).order(creation_time: :desc)
+
   end
 
   def facebook
@@ -27,6 +30,7 @@ include SocialUserHelper
                         ], limit: 20, :offset => "#{params[:times].to_i*19}"})
     @stalked_page = StalkedPage.new
     user = current_social_user
+    @pin = Pin.new
   end
 
   def twitter
@@ -40,7 +44,7 @@ include SocialUserHelper
   def twitter_show
     @last_tweets = twitter_feed("#{params[:name]}")
     @stalked_page = StalkedPage.new
-
+    @pin = Pin.new
   end
 
   def show

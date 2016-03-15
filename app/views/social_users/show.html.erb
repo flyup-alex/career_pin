@@ -70,7 +70,6 @@ Posts from social FACEBOOK
 <%= f.hidden_field(:message, :value => post['message']) if post['message']%>
 <%= f.hidden_field(:creation_time, :value => post['updated_time']) %>
 <%= f.hidden_field(:social_user_id, :value => current_social_user.id ) %>
-<%= f.hidden_field(:company_id, :value => current_company.id) if current_company %>
 <%= f.hidden_field(:company_name, :value => session[:company_name] ) %>
 <%= button_to root_path, type: "submit", class: "submit" do%>
  <i class="fa fa-plus"></i>
@@ -106,12 +105,7 @@ Posts from social FACEBOOK
 <%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
 					<i class="fa fa-twitter"></i>
 				 <% end %>
-				<%= link_to "1", timelines_path( :times => 0, :provider => params[:provider]) %>
-				<%= link_to "2", timelines_path( :times => 1, :provider => params[:provider]) %>
-				<%= link_to "3", timelines_path( :times => 2, :provider => params[:provider]) %>
-				<%= link_to "4", timelines_path( :times => 3, :provider => params[:provider]) %>
-				<%= link_to "5", timelines_path( :times => 4, :provider => params[:provider]) %>
-				
+								
 	<% end %>
 
 <!--..........................
@@ -162,7 +156,6 @@ Posts from social TWITTER
 <%= f.hidden_field(:message, :value => tweet.text) %>
 <%= f.hidden_field(:creation_time, :value => tweet.created_at ) %>
 <%= f.hidden_field(:social_user_id, :value => current_social_user.id ) %>
-<%= f.hidden_field(:company_id, :value => current_company.id) if current_company %>
 <%= f.hidden_field(:company_name, :value => session[:company_name] )%>
 <%= button_to root_path, type: "submit", class: "submit" do%>
  <i class="fa fa-plus"></i>
@@ -210,6 +203,12 @@ Posts from social TWITTER
 					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
 
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
+					<%= link_to "1", timelines_path( :times => 0, :provider => params[:provider]) %>
+				<%= link_to "2", timelines_path( :times => 1, :provider => params[:provider]) %>
+				<%= link_to "3", timelines_path( :times => 2, :provider => params[:provider]) %>
+				<%= link_to "4", timelines_path( :times => 3, :provider => params[:provider]) %>
+				<%= link_to "5", timelines_path( :times => 4, :provider => params[:provider]) %>
+
 
 				<% if current_company %>
 				 <%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
@@ -265,7 +264,9 @@ Posts from social TWITTER
 								<% end %>
 							</div>
 							<div class="cp-button">
-								<button class="submit"><i class="fa fa-trash"></i></button>
+								<%= button_to pin_path(pin), method: :delete do %>
+								 <i class="fa fa-trash"></i>
+								<% end %> 
 							</div>
 							<div class="cp-allweys">
 								<div class="cp-author-image">
@@ -273,7 +274,7 @@ Posts from social TWITTER
 								</div>
 								<div class="cp-text">
 									<p>
-									<%= pin.message %>
+									<%= pin.message.first(90) if pin.message %>
 									</p>
 									<div class="cp-data">
 										<span class="cp-autor"><%= pin.author_name %></span>

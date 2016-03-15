@@ -34,7 +34,7 @@ include SocialUserHelper
                       fields: ['message', 'id', 'from', 'type',
                                 'picture','full_picture', 'object_id', 'link', 'created_time', 'updated_time', 'place', 'actions' 
 
-                        ], limit: 19, :offset => "#{params[:times].to_i*19}"})
+                        ], limit: 20, :offset => "#{params[:times].to_i*19}"})
   	end
   	
   	if current_social_user.twitter_token.present?
@@ -46,13 +46,14 @@ include SocialUserHelper
    	end
     @pin = Pin.new
     if params[:provider] == "twitter"
-     @pins = current_social_user.pins.where(provider: "twitter").order(created_at: :desc)
+     @pins = current_social_user.pins.where(provider: "twitter", company_id: nil).order(created_at: :desc)
     elsif params[:provider] == "facebook"
-     @pins = current_social_user.pins.where(provider: "facebook").order(created_at: :desc)
+     @pins = current_social_user.pins.where(provider: "facebook", company_id: nil).order(created_at: :desc)
     end
   end
 
   def career_pins
+    @pins = Pin.where(company_name: session[:company_name]).order(creation_time: :desc)
     
   end
 

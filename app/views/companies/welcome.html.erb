@@ -2,127 +2,55 @@
 
 			<div class="career-pin-conatiner-user">
 				<ul class="career-pin-preview">
-					<li>Your employees posts</li>
-					
-					<li class="facebook-list">
+					<li>Your employer's posts</li>
+					<% @pins.each do |pin| %>
+					<% if pin.image.nil? || pin.image.empty? %>
+					 <li class=<%="#{pin.provider}-list"%>>
+				 	 <% else %>
+					 <li>
+					<% end %>
 						<div class="cp-2">
-							<a target="blank" href="www.facebook.com/50063176484_10153381528596485">
+							<a target="blank" href=<%= "#{pin.link}" %>>
 								<div class="cp-image">
-
+									<%= image_tag( pin.image, class: "myBackgroundImage") %>
 								</div>
 								<div class="cp-social">
+									<% if pin.provider == "facebook" %>
 									<i class="fa fa-facebook"></i>
-								</div>
-								<div class="cp-button preview">
-									<button class="submit"><i class="fa fa-plus"></i></button>
-								</div>
-								<div class="cp-allweys">
-									<div class="cp-author-image">
-										<%= image_tag("worker_login.jpg", alt: "Author image") %>
-									</div>
-									<div class="cp-text">
-										<p>
-											Michał Żak i Michał Kelles-Krauz swoją przygodę z prowadzeniem własnej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium fugit tenetur aut...
-										</p>
-										<div class="cp-data">
-											<span class="cp-autor">Cris Cris</span>
-											<time>15 days ago</time>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					
-					<li>
-						<div class="cp-2">
-							<a target="blank" href="www.facebook.com/50063176484_10153381528596485">
-								<div class="cp-image">
-									<%= image_tag("worker_login.jpg", alt: "Author image", class: "myBackgroundImage") %>
-								</div>
-								<div class="cp-social">
+									<% elsif pin.provider == "twitter" %>
 									<i class="fa fa-twitter"></i>
+									<% end %>
 								</div>
 								<div class="cp-button preview">
 									<button class="submit"><i class="fa fa-plus"></i></button>
+									<%= button_to pin_path(pin), method: :delete do %>
+								 <i class="fa fa-trash"></i>
+								<% end %> 
 								</div>
-								<div class="cp-allweys">
-									<div class="cp-author-image">
-										<img src="assets/images/worker_login.jpg" alt="Author image">
-									</div>
-									<div class="cp-text">
-										<p>
-											Michał Żak i Michał Kelles-Krauz swoją przygodę z prowadzeniem własnej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium fugit tenetur aut...
-										</p>
-										<div class="cp-data">
-											<span class="cp-autor">Cris Cris</span>
-											<time>15 days ago</time>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					
-					<li>
-						<div class="cp-2">
-							<a target="blank" href="www.facebook.com/50063176484_10153381528596485">
-								<div class="cp-image">
-									<img class="myBackgroundImage" src="assets/images/placeholder8-web.jpg" alt="">
-								</div>
-								<div class="cp-social">
-									<i class="fa fa-facebook"></i>
-								</div>
-								<div class="cp-button preview">
-									<button class="submit"><i class="fa fa-plus"></i></button>
-								</div>
-								<div class="cp-allweys">
-									<div class="cp-author-image">
-										<img src="assets/images/worker_login.jpg" alt="Author image">
-									</div>
-									<div class="cp-text">
-										<p>
-											Michał Żak i Michał Kelles-Krauz swoją przygodę z prowadzeniem własnej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium fugit tenetur aut...
-										</p>
-										<div class="cp-data">
-											<span class="cp-autor">Cris Cris</span>
-											<time>15 days ago</time>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-					</li>
-					
-					<li class="twitter-list">
-						<div class="cp-2">
-							<a target="blank" href="www.facebook.com/50063176484_10153381528596485">
-								<div class="cp-image">
 
-								</div>
-								<div class="cp-social">
-									<i class="fa fa-twitter"></i>
-								</div>
-								<div class="cp-button preview">
-									<button class="submit"><i class="fa fa-plus"></i></button>
-								</div>
 								<div class="cp-allweys">
 									<div class="cp-author-image">
-										<img src="assets/images/worker_login.jpg" alt="Author image">
+										<%= image_tag( pin.author_image )%>
 									</div>
 									<div class="cp-text">
-										<p>
-											Michał Żak i Michał Kelles-Krauz swoją przygodę z prowadzeniem własnej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium fugit tenetur aut...
+										<p><% if pin.image.nil? || pin.image.empty? %>
+											 <%= pin.message.first(300) if pin.message %>
+											 <% else %>
+											 <%= pin.message.first(90) if pin.message %>
+											<% end %>
 										</p>
 										<div class="cp-data">
-											<span class="cp-autor">Cris Cris</span>
-											<time>15 days ago</time>
+											<span class="cp-autor"><%= pin.author_name %></span>
+											<time><%= time_ago_in_words( pin.creation_time ) %></time>
 										</div>
 									</div>
 								</div>
 							</a>
 						</div>
 					</li>
+					<% end %>
+					
+					
 				</ul>
 			</div><!-- /.career-pin-conatiner -->
 

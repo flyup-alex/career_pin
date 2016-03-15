@@ -12,6 +12,12 @@ class PinsController < ApplicationController
   end
 
   def destroy
+    @pin = Pin.find(params[:id])
+    if @pin.destroy
+      redirect_to :back
+    else
+      redirect_to career_path
+    end 
   end
 
   def new

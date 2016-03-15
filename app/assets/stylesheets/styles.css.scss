@@ -2398,7 +2398,8 @@ input[type=radio]:not(old):checked + label > span > span{
 	right: 0;
 	height: auto;
 	overflow: hidden;
-	background-color: #fff;
+	background-color: #FAFAFA;
+	padding-top: 5px;
 }
 
 .admin-options-logout .worker-logout {
