@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'timelines', to: 'social_users#show'
   get '/auth/facebook/callback', to: 'social_users#create'
   get '/auth/twitter/callback', to: 'social_users#create'
-  get ':id', to: 'social_users#new'
+  
   
   #StalkedPages routes:
   resources :stalked_pages
@@ -92,4 +92,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get ':id', to: 'social_users#new'
 end
+

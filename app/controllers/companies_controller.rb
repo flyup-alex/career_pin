@@ -11,7 +11,7 @@ include SocialUserHelper
       @graph = facebook_data(current_social_user)
       #get liked_pages -> return id's of these pages
       @pages = @graph.get_connection( "me" , 'likes',
-                    {fields: ['id', 'name'], limit: 25, :offset => "#{params[:times].to_i*24}"})
+                    {fields: ['id', 'name'], limit: 20, :offset => "#{params[:times].to_i*19}"})
     else
       redirect_to "/auth/facebook"
     end
@@ -26,6 +26,7 @@ include SocialUserHelper
 
                         ], limit: 20, :offset => "#{params[:times].to_i*19}"})
     @stalked_page = StalkedPage.new
+    user = current_social_user
   end
 
   def twitter

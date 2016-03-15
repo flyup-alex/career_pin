@@ -5,7 +5,11 @@ before_action :require_social_user, only: [ :show ]
 include SocialUserHelper
 
   def new
-  	session[:company_name] = params[:id] 
+    if !Company.where( name: params[:id] ).any? 
+      redirect_to root_path
+    else
+    session[:company_name] = params[:id] 
+    end
   end
 
   def create
@@ -30,11 +34,7 @@ include SocialUserHelper
                       fields: ['message', 'id', 'from', 'type',
                                 'picture','full_picture', 'object_id', 'link', 'created_time', 'updated_time', 'place', 'actions' 
 
-                        ], limit: 20, :offset => "#{params[:times].to_i*2}"})
-      #get liked_pages -> return id's of these pages
-      @pages = @graph.get_connection( "me" , 'likes',
-                    {fields: ['id'], limit: 20, :offset => "#{params[:times].to_i*2}"})
-      
+                        ], limit: 19, :offset => "#{params[:times].to_i*19}"})
   	end
   	
   	if current_social_user.twitter_token.present?

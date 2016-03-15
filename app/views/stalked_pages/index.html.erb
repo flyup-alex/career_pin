@@ -1,2 +1,63 @@
-<h1>StalkedPages#index</h1>
-<p>Find me in app/views/stalked_pages/index.html.erb</p>
+<div class="user-container">
+
+			<div class="career-pin-conatiner-user">
+
+				<div class="container-fluid brand-ambasadors">
+
+				<ul class="career-pin-admin">
+					<li>Pinned pages </li>
+				</ul>
+				<% @observed_pages.each do |page|%>
+				<% if page.provider == "facebook" %>
+				<div class="box">
+					<%= link_to facebook_show_path(:id => page.pageid) do%>
+						<div class="profile-image">
+							<%= image_tag(page.image_url)%>
+						</div>
+						<div class="profile-name">
+							<span class="text-center"><%= page.name %></span>
+						</div>
+					<% end %>           
+				</div>
+				<% end %>	
+				<% if page.provider == "twitter" %>
+				<div class="box">
+					<%= link_to twitter_show_path(:name => page.pageid) do%>
+						<div class="profile-image">
+							<%= image_tag(page.image_url)%>
+						</div>
+						<div class="profile-name">
+							<span class="text-center"><%= page.name %></span>
+						</div>
+					<% end %>           
+				</div>
+				<% end %>
+				<% end%>
+			</div><!-- /.career-pin-conatiner -->
+			</div>
+
+
+				<div class="admin-options">
+					<div class="admin-stats">
+					
+					<h2>Lorem ipsum dolores sit amet</h2>
+
+					<div class="stats">
+
+						<div class="stat-box">
+							<h3>Visited</h3>
+							<p>1784</p>
+						</div>
+
+						<div class="stat-box">
+							<h3>Interactions</h3>
+							<p>1242</p>
+						</div>
+
+					</div>
+					
+					</div>
+				</div><!-- /.admin-options -->
+			</div>
+		</div>
+

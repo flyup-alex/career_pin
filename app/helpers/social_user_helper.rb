@@ -21,7 +21,7 @@ def twitter_feed(profile)
         config.access_token        = "#{current_social_user.twitter_token}"
         config.access_token_secret = "#{current_social_user.twitter_secret}"
   		end	
- 		@tweet.user_timeline( "#{profile}" ).take(10) #limits array to 10 items
+ 		@tweet.user_timeline( "#{profile}", options={count: 100} ) #limits array to 10 items
 end
 
 end

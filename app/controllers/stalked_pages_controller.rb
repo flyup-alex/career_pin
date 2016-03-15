@@ -1,5 +1,8 @@
 class StalkedPagesController < ApplicationController
+
+before_action :authenticate_company!
   def index
+  	@observed_pages = current_company.stalked_pages.all
   end
 
   def create
