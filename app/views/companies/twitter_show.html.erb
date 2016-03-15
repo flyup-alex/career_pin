@@ -1,6 +1,6 @@
 
 
-<% author_photo = @last_tweets.first.user.profile_image_uri(size = :bigger) %>
+<% author_photo = @last_tweets.first.user.profile_image_uri(size = :normal) %>
 <% user_name = @last_tweets.first.user.name %>
 <% screen_name = @last_tweets.first.user.screen_name %>
 <div class="user-container">
@@ -57,7 +57,9 @@
               <%= form_for(@stalked_page) do |f| %>
               <%= f.hidden_field(:name, :value => user_name ) %>
               <%= f.hidden_field(:pageid, :value => screen_name) %>
-              <%= f.hidden_field(:image_url, :value => author_photo) %>
+              <% a = "#{author_photo}"  %>
+              <% a.slice!("_normal") %>
+              <%= f.hidden_field(:image_url, :value => a) %>
               <%= f.hidden_field(:company_id, :value => current_company.id) %>
               <%= f.hidden_field(:provider, :value => "twitter") %>
               <%= button_to type: "submit", class: "button" do %>

@@ -1,5 +1,5 @@
 
-
+		<% if !current_company %>
 		<header>
 			<nav class="admin-options-logout">
 				<%= link_to social_users_destroy_path, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Signout", method: :delete do %>
@@ -18,6 +18,7 @@
 				<a class="worker-logout" data-toggle="tooltip" data-placement="bottom" title="Employers' posts"><i class="fa fa-users"></i></a>
 			</nav>
 		</header>
+		<% end %>
 
 		<div class="user-container">
 			<% if params[:provider] == "facebook"%>
@@ -79,7 +80,7 @@
              <li class="twitter-list">
             <% end %>
               <div class="cp-2">
-                <a target="blank" href="www.facebook.com/50063176484_10153381528596485">
+                <a target="blank" href=<%="#{tweet.uri}"%>>
                   <div class="cp-image">
                     <%= image_tag(tweet.media[0]["media_url"], :size => tweet.media[0]["sizes"]["thumb"], class: "myBackgroundImage") if(tweet.media.present?)%>
 
@@ -97,6 +98,7 @@
                     <div class="cp-text">
                       <p>
                         <%= tweet.text.first(140) %>
+
                       </p>
                       <div class="cp-data">
                         <span class="cp-autor"><%= tweet.user.screen_name %></span>
@@ -111,22 +113,39 @@
           <% end %>
 			</div><!-- /.career-pin-conatiner -->
 
-
+				<% if params[:provider] == "facebook" %>
 				<div class="worker-options">
 
 					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
 
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
 
-				<% if params[:provider] == "facebook" %>
+				
+				<%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
+					<i class="fa fa-twitter"></i>
+				 <% end %>
 				<%= link_to "1", timelines_path( :times => 0, :provider => params[:provider]) %>
 				<%= link_to "2", timelines_path( :times => 1, :provider => params[:provider]) %>
 				<%= link_to "3", timelines_path( :times => 2, :provider => params[:provider]) %>
 				<%= link_to "4", timelines_path( :times => 3, :provider => params[:provider]) %>
 				<%= link_to "5", timelines_path( :times => 4, :provider => params[:provider]) %>
-				<% end %>
+				
 				</div>
-					
+				<% end %>
+
+				<% if params[:provider] == "twitter" %>
+				<div class="worker-options">
+
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
+
+				
+				<%= link_to timelines_path(:provider => "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Facebook" do %>
+					<i class="fa fa-facebook-official"></i>
+				<% end %>
+				
+				<% end %>	
 			</div>
 
 

@@ -29,11 +29,24 @@
 				<i class="fa fa-cog"></i>
 			<% end %>
 			<a class="worker-logout" data-toggle="tooltip" data-placement="bottom" title="Preview"><i class="fa fa-th-large"></i></a>
-			<% if current_social_user %>
-			 <%= link_to edit_company_registration_path, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom", title: "Settings"} do %>
+		<% if current_social_user %>
+		<% if current_social_user.facebook_token && current_social_user.twitter_token %>
+			 <%= link_to timelines_path(provider: "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom", title: "Settings"} do %>
+				<i class="fa fa-user"></i>
+			 <% end %>
+			 <% else %>	
+			<% if current_social_user.facebook_token %>
+			 <%= link_to timelines_path(provider: "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom", title: "Settings"} do %>
 				<i class="fa fa-user"></i>
 			 <% end %>
 			<% end %>
+			<% if current_social_user.twitter_token %>
+			 <%= link_to timelines_path(provider: "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom", title: "Settings"} do %>
+				<i class="fa fa-user"></i>
+			 <% end %>
+			<% end %>
+		<% end %>
+		<% end %>	
 			<% if params[:action] == "twitter_show" %>
 			 <%= link_to  'javascript:history.go(-1);', class: "worker-logout", data: {toggle: "tooltip", placement: "bottom", title: "Twitter"} do %>
 				<i class="fa fa-twitter"></i>
@@ -53,7 +66,7 @@
 			 <% end %>
 			<% end %>
 			<% if current_social_user && current_company.stalked_pages.any? %>
-			 <%= link_to stalked_pages_path, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom", title: "Facebook"} do %>
+			 <%= link_to stalked_pages_path, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom", title: "Bookmarks"} do %>
 				<i class="fa fa-bookmark"></i>
 			 <% end %>
 			<% end %> 
