@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'pins/index'
+
+  get 'pins/create'
+
+  get 'pins/destroy'
+
+  get 'pins/new'
+
   get 'stalked_pages/index'
 
   get 'stalked_pages/create'
@@ -33,7 +41,7 @@ Rails.application.routes.draw do
   #StalkedPages routes:
   resources :stalked_pages
   # facebook authentication routes
-
+  resources :pins
 
 
   # The priority is based upon order of creation: first created -> highest priority.

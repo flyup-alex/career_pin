@@ -44,6 +44,7 @@ include SocialUserHelper
    	if !current_social_user.twitter_token.present? && !current_social_user.facebook_token.present?
    		redirect_to root_path
    	end
+    @pin = Pin.new
   end
 
   def destroy

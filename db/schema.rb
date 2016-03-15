@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314123731) do
+ActiveRecord::Schema.define(version: 20160315012910) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "company_name"
@@ -49,6 +49,21 @@ ActiveRecord::Schema.define(version: 20160314123731) do
 
   add_index "companies", ["email"], name: "index_companies_on_email", unique: true
   add_index "companies", ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
+
+  create_table "pins", force: :cascade do |t|
+    t.string   "author_image"
+    t.string   "link"
+    t.string   "provider"
+    t.string   "image"
+    t.string   "author_name"
+    t.text     "message"
+    t.datetime "creation_time"
+    t.string   "company_name"
+    t.integer  "social_user_id"
+    t.integer  "company_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "social_users", force: :cascade do |t|
     t.string   "facebook_token"

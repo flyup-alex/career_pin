@@ -1,5 +1,7 @@
 class SocialUser < ActiveRecord::Base
 
+	has_many :pins
+
 	def self.find_or_create(company_name, session_token, auth)
 		    if auth.provider == "facebook"
 		    	user = SocialUser.where(facebook_uid: auth.uid).first || SocialUser.where(social_uid: session_token).first || SocialUser.new
