@@ -3057,3 +3057,169 @@ a:hover .cp-social .fa-instagram {
 	}
 
 }
+
+form.new_pin,
+.small-cp-button {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.center-div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.small-cp-button i.fa.fa-trash {
+	margin: 20px;
+	border-radius: 100%;
+	border: 1px solid #fff;
+	width: 50px;
+	height: 50px;
+	font-size: 30px;
+	line-height: 50px;
+	text-align: center;
+}
+
+.small-cp-button i.fa.fa-trash:hover {
+	background-color: #fff;
+	color: #15254C;
+}
+
+.user-right .cp-allweys {
+	color: #fff;
+}
+
+#pag {
+	width: 400px;
+	margin: 10px auto;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#pag li {
+	padding: 10px;
+	border: 1px solid #15254C;
+}
+
+#pag li a{
+	color: #15254C;
+}
+
+#pag li:hover {
+	background-color: #15254C;
+	cursor: pointer;
+}
+
+#pag li:hover a {
+	color: #fff;
+}
+
+#pag li.active {
+	background-color: #15254C;
+}
+
+#pag li.active a {
+	color: #fff;
+}
+
+.cp-button.preview form.button_to {
+	margin: 0;
+	width: 90px;
+	height: auto;
+	display: flex;
+}
+
+.cp-button.preview form.delete {
+	margin: 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+a.plus {
+	margin: 20px;
+	border-radius: 100%;
+	border: 1px solid #fff;
+	width: 50px;
+	height: 50px;
+	font-size: 30px;
+	line-height: 50px;
+	text-align: center;
+}
+
+a.plus:hover {
+	background-color: #fff;
+	color: #15254C;
+	cursor: pointer;
+}
+
+form.trash {
+	width: 90px;
+	height: 90px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+#error_explanation {
+	background-color: #fff;
+	border: 1px solid #15254C;
+	z-index: 999;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+#error_explanation h2 {
+	margin: 0;
+	text-align: center;
+}
+
+#error_explanation ul {
+	list-style: none;
+	text-align: center;
+	width: 100%;
+	padding-top: 10px;
+}
+
+#error_explanation ul li {
+	width: 100%;
+	max-width: 100%;
+}
+
+.stats form.button_to {
+	margin: 20px 0;
+	display: flex;
+	justify-content: center;
+}
+
+form.new_stalked_page {
+	display: flex;
+	justify-content: center;
+}
+
+form.new_stalked_page button {
+  border: 1px solid #15254C;
+  outline: none;
+  border-radius: 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+	background: none;
+  color: #15254C;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-appearance: none;
+}
+
+
+form.new_stalked_page button:hover, 
+form.new_stalked_page button:focus {
+  background: #15254C;
+	color: #fff;
+}

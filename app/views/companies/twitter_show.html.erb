@@ -66,9 +66,23 @@
 
         <div class="admin-options">
           <div class="admin-stats">
-            <% if current_company.stalked_pages.where( pageid: screen_name ).first %>
+           
+          <h2>Lorem ipsum dolores sit amet</h2>
+
+          <div class="stats">
+
+            
+            
+            
+            <button class="button">Your Facebook posts</button>
+
+             <% if current_company.stalked_pages.where( pageid: screen_name ).first %>
               <%= button_to stalked_page_path(params[:name]), class: "button", method: :delete do %>
                 Unfollow
+              <% end %>
+
+              <%= link_to create_pin_from_twitter_path(:name => screen_name ), class: "button"  do %>
+                Create career-pin
               <% end %>
             <% else %>
               <%= form_for(@stalked_page) do |f| %>
@@ -84,22 +98,6 @@
                 <% end %>
               <% end %>
             <% end %>
-          <h2>Lorem ipsum dolores sit amet</h2>
-
-          <div class="stats">
-
-            <div class="stat-box">
-              <h3>Visited</h3>
-              <p>1784</p>
-            </div>
-
-            <div class="stat-box">
-              <h3>Interactions</h3>
-              <p>1242</p>
-            </div>
-            
-            
-            <button class="button">Your Facebook posts</button>
           </div>
 
           

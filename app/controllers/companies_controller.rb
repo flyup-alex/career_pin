@@ -5,7 +5,7 @@ include SocialUserHelper
   def welcome
     session[:company_name] = current_company.name
 
-    @pins = Pin.where(company_name: current_company.name).order(creation_time: :desc)
+    @pins = Pin.where(company_name: current_company.name, career_pin: false).order(creation_time: :desc)
 
   end
 
@@ -47,12 +47,23 @@ include SocialUserHelper
     @pin = Pin.new
   end
 
-  def show
+  def career_pin_admin
+
+    @pins = Pin.where(company_name: current_company.name, career_pin: true).order(creation_time: :desc)
+    
   end
 
-  def edit
-  end
+  def add_to_career_pin_outside
 
-  def destroy
-  end
+    @pin = Pin.find(params[:id])
+    @pin.career_pin = true
+    @pin.save
+    redirect_to :back
+
+  end 
+
+
+
+
+
 end

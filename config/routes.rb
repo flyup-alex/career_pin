@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   get 'facebook_show', to: 'companies#facebook_show'
   get 'twitter', to: 'companies#twitter'
   get 'twitter_show', to: 'companies#twitter_show'
-  
+  get 'career_pin_admin', to: 'companies#career_pin_admin'  
+  get 'career_pin_add', to: 'companies#add_to_career_pin_outside'
+
   # Social Users routes - get ":id" should be always at the bottom.
   get 'career', to: 'social_users#career_pins'
   get 'social_users/create'
@@ -43,6 +45,9 @@ Rails.application.routes.draw do
   resources :stalked_pages
   # facebook authentication routes
   resources :pins
+  get 'create_pin_from_twitter', to: 'pins#twitter_create' 
+  get 'create_pin_from_facebook', to: 'pins#facebook_create' 
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -101,6 +106,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  get ':id', to: 'social_users#new'
+  get 'company/:id', to: 'social_users#new'
 end
 

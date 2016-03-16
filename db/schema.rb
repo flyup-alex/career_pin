@@ -61,8 +61,9 @@ ActiveRecord::Schema.define(version: 20160315012910) do
     t.string   "company_name"
     t.integer  "social_user_id"
     t.integer  "company_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "career_pin",     default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "social_users", force: :cascade do |t|

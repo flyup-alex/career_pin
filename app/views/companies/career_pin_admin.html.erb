@@ -14,7 +14,6 @@
 								<div class="cp-image">
 									<%= image_tag( pin.image, class: "myBackgroundImage") %>
 								</div>
-								
 								<div class="cp-social">
 									<% if pin.provider == "facebook" %>
 									<i class="fa fa-facebook"></i>
@@ -22,30 +21,19 @@
 									<i class="fa fa-twitter"></i>
 									<% end %>
 								</div>
-								
 								<div class="cp-button preview">
-									
-									
-										<%= button_to career_pin_add_path( id: pin.id ),class: "plus", form_class: "delete", params: {id: pin.id}, method: :get  do %>
-										<i class="fa fa-plus"></i>
-										<% end %> 
-									
-									
-									
-										<%= button_to pin_path(pin),class: "trash", method: :delete do %>
-										<i class="fa fa-trash"></i>
-										<% end %>
-									
+									<%= button_to pin_path(pin), method: :delete do %>
+								 <i class="fa fa-trash"></i>
+								<% end %> 
 								</div>
-								
-								
+
 								<div class="cp-allweys">
 									<div class="cp-author-image">
 										<%= image_tag( pin.author_image )%>
 									</div>
 									<div class="cp-text">
 										<p><% if pin.image.nil? || pin.image.empty? %>
-											 <%= pin.message.first(300) if pin.message %>
+											 <%= pin.message.first(250) if pin.message %>
 											 <% else %>
 											 <%= pin.message.first(90) if pin.message %>
 											<% end %>
@@ -56,8 +44,7 @@
 										</div>
 									</div>
 								</div>
-								</a>
-							
+							</a>
 						</div>
 					</li>
 					<% end %>

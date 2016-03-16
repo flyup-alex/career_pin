@@ -102,9 +102,8 @@ Posts from social FACEBOOK
 				</ul>
 		
 
-<%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
-					<i class="fa fa-twitter"></i>
-				 <% end %>
+
+				 
 								
 	<% end %>
 
@@ -185,7 +184,53 @@ Posts from social TWITTER
               </div>
             </li>
           <% end %>
+      </ul>
           <% end %>
+
+          <% if params[:provider] == "facebook" %>
+	          <ul id="pag">
+	          	<% if !params[:times].present? || params[:times] == "0" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>	
+	          		<%= link_to "1", timelines_path( :times => 0, :provider => params[:provider]) %>
+	          	</li>
+	          	<% if params[:times] == "1" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "2", timelines_path( :times => 1, :provider => params[:provider]) %>
+	          	</li>
+	          	<% if params[:times] == "2" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "3", timelines_path( :times => 2, :provider => params[:provider]) %>
+	          	</li>
+	          	<% if params[:times] == "3" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "4", timelines_path( :times => 3, :provider => params[:provider]) %>
+	          	</li>
+	          	<% if params[:times] == "4" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "5", timelines_path( :times => 4, :provider => params[:provider]) %>
+	          	</li>
+	          </ul>	
+          <% end %>
+		
+		
+		
+		
+		
 
 
 			</div><!-- /.career-pin-conatiner -->
@@ -203,19 +248,22 @@ Posts from social TWITTER
 					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
 
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
-					<%= link_to "1", timelines_path( :times => 0, :provider => params[:provider]) %>
-				<%= link_to "2", timelines_path( :times => 1, :provider => params[:provider]) %>
-				<%= link_to "3", timelines_path( :times => 2, :provider => params[:provider]) %>
-				<%= link_to "4", timelines_path( :times => 3, :provider => params[:provider]) %>
-				<%= link_to "5", timelines_path( :times => 4, :provider => params[:provider]) %>
+					
 
 
-				<% if current_company %>
-				 <%= link_to timelines_path(:provider => "twitter"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
-					<i class="fa fa-twitter"></i>
-				 <% end %>
-				<% end %>
-				 				<% end %>
+
+				<div class="center-div">
+					<div class="worker-social">
+						<% if current_company %>
+				         <%= link_to timelines_path(:provider => "twitter"), class: "btn btn-block btn-social btn-lg btn-twitter", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
+						 <i class="fa fa-twitter"></i>
+					     Log in with Twitter
+				         <% end %>
+						<% end %>
+					</div>
+				</div>
+
+ 				<% end %>
 		<!--..........................
 
 		 Twitter part of view - is visible only for twitter logged in 
@@ -229,11 +277,20 @@ Posts from social TWITTER
 
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
 
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
+
+				<div class="center-div">
+				<div class="worker-social">
 				<% if current_company %>
-				 <%= link_to timelines_path(:provider => "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Facebook" do %>
+				 <%= link_to timelines_path(:provider => "facebook"), class: "btn btn-block btn-social btn-lg btn-facebook", data: {toggle: "tooltip", placement: "bottom"}, title: "Facebook" do %>
 					<i class="fa fa-facebook-official"></i>
+					Log in with Facebook
 				 <% end %>
 				<% end %>
+				</div>
+				</div>
 				
 				<% end %>
 
@@ -264,7 +321,7 @@ Posts from social TWITTER
 								<% end %>
 							</div>
 							<div class="cp-button">
-								<%= button_to pin_path(pin), method: :delete do %>
+								<%= link_to pin_path(pin), class: "small-cp-button", method: :delete do %>
 								 <i class="fa fa-trash"></i>
 								<% end %> 
 							</div>

@@ -84,6 +84,10 @@
 						<% end %>
 					</div>
 					<% end %>
+
+					<%= link_to create_pin_from_facebook_path(id: params[:id], times: params[:times]), class: " button" do %>
+							Create Career-Pin
+					<% end %>
 									<%= link_to "1", facebook_show_path( :times => 0, :id => params[:id], :name => params[:name]) %>
 				<%= link_to "2", facebook_show_path( :times => 1, :id => params[:id], :name => params[:name]) %>
 				<%= link_to "3", facebook_show_path( :times => 2, :id => params[:id], :name => params[:name]) %>
