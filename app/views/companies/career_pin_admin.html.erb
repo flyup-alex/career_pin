@@ -2,7 +2,7 @@
 
 			<div class="career-pin-conatiner-user">
 				<ul class="career-pin-preview">
-					<li>Your employees' posts</li>
+					<li style="font-family: carnas light;">career-pin</li>
 					<% @pins.each do |pin| %>
 					<% if pin.image.nil? || pin.image.empty? %>
 					 <li class=<%="#{pin.provider}-list"%>>
@@ -40,7 +40,7 @@
 										</p>
 										<div class="cp-data">
 											<span class="cp-autor"><%= pin.author_name %></span>
-											<time><%= time_ago_in_words( pin.creation_time ) %></time>
+											<time><%= time_ago_in_words( pin.creation_time ) %> ago</time>
 										</div>
 									</div>
 								</div>
@@ -56,31 +56,37 @@
 				<div class="admin-options">
 					<div class="admin-stats">
 					
-					<h2>Lorem ipsum dolores sit amet</h2>
+					<h2>Analitics:</h2>
 
 					<div class="stats">
 
 						<div class="stat-box">
 							<h3>Visited</h3>
-							<p>1784</p>
+							<p><%= @visited%></p>
 						</div>
 
 						<div class="stat-box">
-							<h3>Interactions</h3>
-							<p>1242</p>
+							<h3>Views</h3>
+							<p><%= @views %></p>
 						</div>
+						<p>Powyżej widnieją statystyki, dzięki którym możesz obserwować, jakim zainteresowaniem cieszy się miejsce, w którym został umieszczony career-pin. </p>
+
+						<p>Aby umieścić career-pin na swojej stronie wyślij dane do swojego działu IT, lub samodzielnie dodaj poniższy kod w odpowiednie miejsce na Twojej stronie.</p>
 						
 						<div class="stat-box alt">
 							<h3>iframe</h3>
-							<p>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/N0Ix8XlQkTY" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</p>
+							<p>&lt;iframe width="100%" height="3000px" src="http://career-pin.com/career-pin/<%= "#{current_company.name}" %> frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</p>
 						</div>
-						
+
+						<a HREF="mailto:the_best_it_guy_in_universe?subject=career-pin implementation&body=Hi, please implement this code to our website. I would like to this be here: <place for link>. The only thing is to get here that awesome link. ">tell a friend</a>
+
+						<p>Wyślij swoim pracownikom dostęp do career-pin aby zachęcić ich do wymieniania się własnymi treściami.</p>
 						<div class="stat-box alt">
 							<h3>Employee link</h3>
-							<p>http://career-pin.com/company</p>
+							<p>http://career-pin.com/company/<%= "#{current_company.name}"%></p>
 						</div>
 						
-						<button class="button">Preview</button>
+						
 
 					</div>
 					

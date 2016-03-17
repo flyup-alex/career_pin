@@ -26,8 +26,8 @@ include SocialUserHelper
     end
   end
 
-  def show
-  	if current_social_user.facebook_token.present? 
+  def show 
+    if current_social_user.facebook_token.present? 
   		@graph = facebook_data(current_social_user)
   		@feed = @graph.get_connection( "me" , 'posts',
                     {
@@ -53,6 +53,22 @@ include SocialUserHelper
   end
 
   def career_pins
+    if session[:presence] != "byltu"
+     session[:presence] = "byltu"
+     special_user_statistic_key = Digest::SHA1.hexdigest([Time.now, rand].join)
+     session[:special_user_statistic_key] = special_user_statistic_key
+     user_stat = Stat.new(special_user_statistic_key: special_user_statistic_key )
+     user_stat.views = 1
+     user_stat.visited = 1
+     user_stat.company_id = Company.where(name: session[:company_name]).first.id
+     user_stat.save
+    end
+    if session[:presence] = "byltu"
+     backing_user = Stat.where(special_user_statistic_key: session[:special_user_statistic_key]).first
+     backing_user.views += 1
+     backing_user.save
+    end  
+
     @pins = Pin.where(company_name: session[:company_name]).order(creation_time: :desc)
     
   end

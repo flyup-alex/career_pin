@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   resources :pins
   get 'create_pin_from_twitter', to: 'pins#twitter_create' 
   get 'create_pin_from_facebook', to: 'pins#facebook_create' 
-
+  get 'step_by_step', to: 'companies#step_by_step'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -107,5 +107,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   get 'company/:id', to: 'social_users#new'
+  get 'career-pin/:company_name', to: 'pins#career_pin_outside'
 end
 

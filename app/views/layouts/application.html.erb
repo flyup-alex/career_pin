@@ -90,5 +90,24 @@
 			});
 		})(jQuery);
 	</script>
+
+	<!-- Notification --> 
+	<% if flash[:danger] %>
+		<div class="notification">
+			<h4 style="color: #FF1654;"><%= flash[:danger] %></h4>
+			<p><%= flash[:notice] %></p>
+		</div>
+	<% elsif flash[:success] %>
+		<div class="notification">
+		 <h4 style="color: #16632F;"><%= flash[:success] %></h4>
+		 <p><%= flash[:notice] %></p>
+		</div>
+	<% end %>
+
+		<script type="text/javascript">
+			setTimeout(function() {
+					$('.notification').fadeOut('fast');
+			}, 4000);
+		</script>
 </body>
 </html>

@@ -15,7 +15,7 @@
              <li class="twitter-list">
             <% end %>
               <div class="cp-2">
-                <a target="blank" href="www.facebook.com/50063176484_10153381528596485">
+                <a target="blank" href=<%= "#{tweet.uri}"%> >
                   <div class="cp-image">
                     <%= image_tag(tweet.media[0]["media_url"], class: "myBackgroundImage") if(tweet.media.present?)%>
 

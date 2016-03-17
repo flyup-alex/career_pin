@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315012910) do
+ActiveRecord::Schema.define(version: 20160317101448) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "company_name"
@@ -86,6 +86,17 @@ ActiveRecord::Schema.define(version: 20160315012910) do
     t.string   "provider"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer  "views"
+    t.integer  "visited"
+    t.integer  "company_id"
+    t.string   "special_user_statistic_key"
+    t.integer  "company_name"
+    t.boolean  "career_pin",                 default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
 end

@@ -29,7 +29,43 @@
 						<% end %>            
 					</div>
 				<% end %>
-
+				<ul id="pag">
+	          	<% if !params[:times].present? || params[:times] == "0" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>	
+	          		<%= link_to "1", facebook_path( :times => 0) %>
+	          	</li>
+	          	<% if params[:times] == "1" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "2", facebook_path( :times => 1) %>
+	          	</li>
+	          	<% if params[:times] == "2" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "3", facebook_path( :times => 2) %>
+	          	</li>
+	          	<% if params[:times] == "3" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "4", facebook_path( :times => 3) %>
+	          	</li>
+	          	<% if params[:times] == "4" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "5", facebook_path( :times => 4) %>
+	          	</li>
+	          </ul>	
 
 
 			</div><!-- /.career-pin-conatiner -->
@@ -37,29 +73,16 @@
 
 
 				<div class="admin-options">
-					<div class="admin-stats">
-						           
-					</div>
 					
-					<h2>Followed pages:</h2>
+					<div class="worker-options">
 
-					<div class="stats">
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
 
-						<div class="stat-box">
-							<h3>Visited</h3>
-							<p>1784</p>
-						</div>
-										<%= link_to "1", facebook_path( :times => 1) %>
-				<%= link_to "2", facebook_path( :times => 2) %>
-				<%= link_to "3", facebook_path( :times => 3) %>
-				<%= link_to "4", facebook_path( :times => 4) %>
-				<%= link_to "5", facebook_path( :times => 5) %>
-						<div class="stat-box">
-							<h3>Interactions</h3>
-							<p>1242</p>
-						</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
 
-					</div>
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
 					
 					</div>
 				</div><!-- /.admin-options -->

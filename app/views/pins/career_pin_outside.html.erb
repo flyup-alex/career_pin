@@ -1,0 +1,49 @@
+<div class = "career-pin-outside-containter">
+	<ul class="career-pin-preview">
+		<li></li>
+		<% @pins.each do |pin| %>
+		<% if pin.image.nil? || pin.image.empty? %>
+		 <li class=<%="#{pin.provider}-list"%>>
+	 	 <% else %>
+		 <li>
+		<% end %>
+			<div class="cp-2">
+				<a target="blank" href=<%= "#{pin.link}" %>>
+					<div class="cp-image">
+						<%= image_tag( pin.image, class: "myBackgroundImage") %>
+					</div>
+					<div class="cp-social">
+						<% if pin.provider == "facebook" %>
+						<i class="fa fa-facebook"></i>
+						<% elsif pin.provider == "twitter" %>
+						<i class="fa fa-twitter"></i>
+						<% end %>
+					</div>
+					<div class="cp-button preview">
+
+					</div>
+
+					<div class="cp-allweys">
+						<div class="cp-author-image">
+							<%= image_tag( pin.author_image )%>
+						</div>
+						<div class="cp-text">
+							<p><% if pin.image.nil? || pin.image.empty? %>
+								 <%= pin.message.first(250) if pin.message %>
+								 <% else %>
+								 <%= pin.message.first(90) if pin.message %>
+								<% end %>
+							</p>
+							<div class="cp-data">
+								<span class="cp-autor"><%= pin.author_name %></span>
+								<time><%= time_ago_in_words( pin.creation_time ) %> ago</time>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</li>
+		<% end %>	
+	</ul>
+</div >
+	

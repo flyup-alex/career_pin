@@ -960,7 +960,15 @@ img {
 html {
 	box-sizing: border-box;
 }
+.career-pin-outside-containter{
+	max-width: 960px;
+	margin: 0 auto;
+}
 
+.career-pin-outside-containter .career-pin-preview {
+	padding: 0;
+	margin: 0 auto;
+}
 .career-pin-conatiner,
 .career-pin-conatiner-user {
 	max-width: 1200px;
@@ -1002,6 +1010,8 @@ html {
 .career-pin-conatiner i.fa-instagram {
 	background-color: #3f729b;
 }
+
+
 
 .social-button-facebook,
 .social-button-twitter {
@@ -3223,3 +3233,25 @@ form.new_stalked_page button:focus {
   background: #15254C;
 	color: #fff;
 }
+
+.notification {
+	padding: 20px;
+	width: auto;
+	max-width: 300px;
+	height: auto;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	border: 1px solid #15254C;
+	background-color: #fff;
+}
+
+.notification h4 {
+	font-size: 18px;
+}
+
+.notification p {
+	font-size: 13px;
+}
+

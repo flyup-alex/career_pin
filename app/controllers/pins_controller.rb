@@ -2,7 +2,24 @@ class PinsController < ApplicationController
   
 include SocialUserHelper
 
-  def index
+  def career_pin_outside
+    if session[:candidate] != "widziałemto"
+     session[:candidate] = "widziałemto"
+     special_user_statistic_key = Digest::SHA1.hexdigest([Time.now, rand].join)
+     session[:special_user_statistic_key] = special_user_statistic_key
+     user_stat = Stat.new(special_user_statistic_key: special_user_statistic_key )
+     user_stat.views = 1
+     user_stat.visited = 1
+     user_stat.career_pin = true
+     user_stat.company_id = Company.where(name: params[:company_name]).first.id
+     user_stat.save
+    end
+    if session[:candidate] = "widziałemto"
+     backing_user = Stat.where(special_user_statistic_key: session[:special_user_statistic_key]).first
+     backing_user.views += 1
+     backing_user.save
+    end  
+    @pins = Pin.where(company_name: params[:company_name], career_pin: true).order(creation_time: :desc).first(20)
   end
 
   def create
@@ -12,6 +29,8 @@ include SocialUserHelper
   	else
   		redirect_to root_path
   	end 
+    flash[:success] = "New pin was added!"
+    flash[:notice] = "You have added new pin to internal career-pin for your coworkers. Good Job!"
   end
 
   def twitter_create
@@ -73,7 +92,12 @@ include SocialUserHelper
     else
       redirect_to career_path
     end 
+
+  flash[:danger] = "Pin was deleted!"
+  flash[:notice] = "Pin was removed from all career-pins. Now nobody is able to see it."
+
   end
+
 
   def new
   end

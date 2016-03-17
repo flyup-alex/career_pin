@@ -4,8 +4,28 @@ include SocialUserHelper
 
   def welcome
     session[:company_name] = current_company.name
+    if !current_company.pins.present? 
+      redirect_to step_by_step_path(step: 1) 
+    end
+    # How many people from your company seen inside version of career-pin #
+    
+    @views = 0
+    current_company.stats.where(["updated_at > ?", 7.days.ago]).where(career_pin: false).each do |stat|
+      @views += stat.views.to_i
+    end
 
-    @pins = Pin.where(company_name: current_company.name, career_pin: false).order(creation_time: :desc)
+    
+    # end #
+
+    # How many people from your company visited career-pin - uniqueness workers #
+    @visited = 0
+    current_company.stats.all.each do |stat|
+     @visited += stat.visited.to_i
+    end
+
+
+
+    @pins = Pin.where(company_name: current_company.name ).order(creation_time: :desc)
 
   end
 
@@ -18,6 +38,8 @@ include SocialUserHelper
     else
       redirect_to "/auth/facebook"
     end
+
+    
   end
 
   def facebook_show
@@ -48,8 +70,23 @@ include SocialUserHelper
   end
 
   def career_pin_admin
+    # How many people from your company seen inside version of career-pin #
+    
+    @views = 0
+    current_company.stats.where(["updated_at > ?", 7.days.ago]).where(career_pin: true).each do |stat|
+      @views += stat.views.to_i
+    end
 
-    @pins = Pin.where(company_name: current_company.name, career_pin: true).order(creation_time: :desc)
+    
+    # end #
+
+    # How many people from your company visited career-pin - uniqueness workers #
+    @visited = 0
+    current_company.stats.where(career_pin: true).each do |stat|
+     @visited += stat.visited.to_i
+    end
+
+    @pins = Pin.where(company_name: current_company.name, career_pin: true).order(creation_time: :desc).first(20)
     
   end
 
@@ -60,10 +97,14 @@ include SocialUserHelper
     @pin.save
     redirect_to :back
 
+    flash[:success] = "Successfuly added"
+    flash[:notice] = "Pin was successfuly added to career-pin and now can be seen by candidates!"
   end 
 
 
-
+  def step_by_step
+    
+  end
 
 
 end

@@ -55,14 +55,57 @@
 						</li>
 					<% end %>
 				</ul>
-				<%= current_social_user.id %>
+				<ul id="pag">
+	          	<% if !params[:times].present? || params[:times] == "0" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>	
+	          		<%= link_to "1", facebook_show_path( :times => 0, :name => params[:name], :id => params[:id]) %>
+	          	</li>
+	          	<% if params[:times] == "1" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "2", facebook_show_path( :times => 1, :name => params[:name], :id => params[:id]) %>
+	          	</li>
+	          	<% if params[:times] == "2" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "3", facebook_show_path( :times => 2, :name => params[:name], :id => params[:id]) %>
+	          	</li>
+	          	<% if params[:times] == "3" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "4", facebook_show_path( :times => 3, :name => params[:name], :id => params[:id]) %>
+	          	</li>
+	          	<% if params[:times] == "4" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "5", facebook_show_path( :times => 4, :name => params[:name], :id => params[:id]) %>
+	          	</li>
+	          </ul>	
+
 
 			</div><!-- /.career-pin-conatiner -->
 
 				<div class="admin-options">
 					<div class="admin-stats">
+					<%= button_to create_pin_from_facebook_path, params: {id: params[:id], times: params[:times]}, class: " button", method: :get do %>
+							Create Career-Pin
+					<% end %>
+					<h2>Tytuł podstrony jakiś mądry</h2>
+					<p>Tekst podstrony niekoniecznie bardzo mądry ale na pewno długi</p>
+						<!-- BUTTON DO STALKOWANIA -->
 						<% if current_company.stalked_pages.where(:pageid => params[:id] ).first %>
-						 <%= button_to stalked_page_path(params[:id]), class: " button", method: :delete do %>
+						 <%= button_to stalked_page_path(params[:id]), class: " button", style: "padding: 0 auto;", method: :delete do %>
 							Unfollow
 						 <% end %>
 						<% else %>
@@ -72,26 +115,16 @@
 							<%= f.hidden_field(:image_url, :value => autor_photo) %>
 							<%= f.hidden_field(:company_id, :value => current_company.id) %>
 							<%= f.hidden_field(:provider, :value => "facebook") %>
-
-
-							<h6>Follow this page to get a quick acces to new posts.</h6>
-
-							<div class="stats">
-								<%= button_to type: "submit", class: "button" do %>
+							<%= button_to type: "submit", class: "button", form_class: "delete" do %>
 								Follow
-								<% end %>
-							</div>
+							<% end %>
 						<% end %>
+						<!-- KONIEC BUTTONA DO STALKOWANIA -- >
+
 					</div>
 					<% end %>
 
-					<%= link_to create_pin_from_facebook_path(id: params[:id], times: params[:times]), class: " button" do %>
-							Create Career-Pin
-					<% end %>
-									<%= link_to "1", facebook_show_path( :times => 0, :id => params[:id], :name => params[:name]) %>
-				<%= link_to "2", facebook_show_path( :times => 1, :id => params[:id], :name => params[:name]) %>
-				<%= link_to "3", facebook_show_path( :times => 2, :id => params[:id], :name => params[:name]) %>
-				<%= link_to "4", facebook_show_path( :times => 3, :id => params[:id], :name => params[:name]) %>
-				<%= link_to "5", facebook_show_path( :times => 4, :id => params[:id], :name => params[:name]) %>
+
+
 				</div><!-- /.admin-options -->
 		</div><!-- /.user-container -->

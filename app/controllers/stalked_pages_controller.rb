@@ -12,6 +12,9 @@ before_action :authenticate_company!
   	else
   		redirect_to root_path
   	end
+
+    flash[:success] = "You are following this page"
+    flash[:notice] = "You can now easy-access to this page in your bookmarks!"
   end
 
   def destroy
@@ -21,6 +24,10 @@ before_action :authenticate_company!
   	else
   	 redirect_to :root_path
   	end
+  
+  flash[:success] = "You have unfollowed this page"
+  flash[:notice] = "This page has been removed from your bookmarks"
+
   end
 
   private

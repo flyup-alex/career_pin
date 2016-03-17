@@ -25,10 +25,11 @@
 								
 								<div class="cp-button preview">
 									
-									
+										<% if !pin.career_pin %>
 										<%= button_to career_pin_add_path( id: pin.id ),class: "plus", form_class: "delete", params: {id: pin.id}, method: :get  do %>
 										<i class="fa fa-plus"></i>
 										<% end %> 
+										<% end %>
 									
 									
 									
@@ -52,7 +53,7 @@
 										</p>
 										<div class="cp-data">
 											<span class="cp-autor"><%= pin.author_name %></span>
-											<time><%= time_ago_in_words( pin.creation_time ) %></time>
+											<time><%= time_ago_in_words( pin.creation_time ) %> ago</time>
 										</div>
 									</div>
 								</div>
@@ -69,35 +70,21 @@
 				<div class="admin-options">
 					<div class="admin-stats">
 					
-					<h2>Lorem ipsum dolores sit amet</h2>
+					<h2>Here are some stats!</h2>
 
 					<div class="stats">
 
 						<div class="stat-box">
-							<h3>Visited</h3>
-							<p>1784</p>
+							<h3>Employees views today</h3>
+							<p><%= @views %></p>
 						</div>
 
 						<div class="stat-box">
-							<h3>Interactions</h3>
-							<p>1242</p>
+							<h3>Unique employees visits:</h3>
+							<p><%= @visited %></p>
 						</div>
-						
-						<div class="stat-box alt">
-							<h3>iframe</h3>
-							<p>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/N0Ix8XlQkTY" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</p>
-						</div>
-						
-						<div class="stat-box alt">
-							<h3>Employee link</h3>
-							<p>http://career-pin.com/company</p>
-						</div>
-						
-						<button class="button">Preview</button>
 
-					</div>
-					
-					
+					</div>			
 					
 					</div>
 				</div><!-- /.admin-options -->

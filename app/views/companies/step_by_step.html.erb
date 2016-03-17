@@ -1,0 +1,37 @@
+
+<% if params[:step] == "1" %>
+<div class="user-container">
+
+			<div class="career-pin-conatiner-user">
+				<ul class="career-pin-preview">
+					<li>Your employees' posts</li>
+					
+				</ul>
+			</div><!-- /.career-pin-conatiner -->
+
+				<div class="admin-options">
+					<div class="admin-stats">
+					
+					<h2>Here are some stats!</h2>
+
+					<div class="stats">
+
+						<div class="stat-box">
+							<h3>First step</h3>
+							<p><%= @views %></p>
+						</div>
+
+						<div class="stat-box">
+							<h3>Unique employees visits:</h3>
+							<p><%= @visited %></p>
+						</div>
+
+					</div>			
+					
+					</div>
+				</div><!-- /.admin-options -->
+		</div><!-- /.user-container -->
+<% elsif params[:step] == "2"
+	%>
+test
+<% end %>
