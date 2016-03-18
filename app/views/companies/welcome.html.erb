@@ -70,19 +70,30 @@
 				<div class="admin-options">
 					<div class="admin-stats">
 					
-					<h2>Here are some stats!</h2>
+					<h2>W ciągu ostatnich 7 dni</h2>
 
 					<div class="stats">
 
 						<div class="stat-box">
-							<h3>Employees views today</h3>
-							<p><%= @views %></p>
+							<h3>career-pin wyświetlono</h3>
+							<p><%= @views %> razy</p>
 						</div>
 
 						<div class="stat-box">
-							<h3>Unique employees visits:</h3>
-							<p><%= @visited %></p>
+							<h3>career-pin został odwiedzony</h3>
+							<p><%= @visited %> razy</p>
 						</div>
+
+						<div class="stat-box alt">
+							<h3>Link dostępu dla pracowników</h3>
+							<p>http://career-pin.com/company/<%= "#{current_company.name}"%></p>
+						</div>
+						<p>Wyślij swoim współpracownikom dostęp do career-pin aby oni również mogli dzielić się swoimi aktywnościami z SocialMediów.</p>
+	<ul id="pag">
+     <li>
+	 <a HREF="mailto:maile_twoich_wspołpracowników@domenafirmy.pl?subject=Ludzka strona firmy&body=Dzień dobry,%0D%0ADoskonale zdajemy sobie sprawę z tego, jak ważną częścią życia każdego z Was jest praca. Wycchodząc naprzeciw oczekiwaniom naszych pracowników oraz kandydatów uruchomiliśmy usługę career-pin. Pod tym linkiem mogą Państwo znaleźć career-pin, platformę służącą do dzielenia się pasjami oraz wydarzeniami. %0D%0A%0D%0A------------------------------------%0D%0A%0D%0AProszę wkleić tutaj LINK DOSTĘPU DLA PRACOWNIKÓW, znajdujący się na stronie career-pin.%0D%0A%0D%0A------------------------------------%0D%0A%0D%0AZachęcamy do prezentowania innym współpracownikom ciekawych wiadomości, zdjęć z wyjazdów integracyjnych, targów czy innych podobnych skarbów :) Zyta wymyśl coś tutaj bo jest 4 rano :D ">Wyślij dostęp współpracownikom</a>
+	 </li>
+	</ul>
 
 					</div>			
 					

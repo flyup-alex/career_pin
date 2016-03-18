@@ -2,7 +2,8 @@
 
 			<div class="career-pin-conatiner-user">
 				<ul class="career-pin-preview">
-					<li>Your Facebook posts</li>
+					<% autor_name = @feed.first['from']['name'] %>
+					<li><span style="font-family:carnas light;">Ostatnie posty <%= autor_name %> </span></li>
 					<% autor_photo = @graph.get_picture(@feed.first['from']['id'], type: :large) %>
 					<% @feed.each do |post| %>
 						<% if post['full_picture'].nil? %>
@@ -24,7 +25,7 @@
 <%= f.hidden_field(:link, :value => "http://facebook.com/#{post['id']}" ) %>
 <%= f.hidden_field(:provider, :value => "facebook") %>
 <%= f.hidden_field(:image, :value => post['full_picture']) %>
-<%= f.hidden_field(:author_name, :value => post['from']['name']) %>
+<%= f.hidden_field(:author_name, :value => autor_name) %>
 <%= f.hidden_field(:message, :value => post['message']) if post['message']%>
 <%= f.hidden_field(:creation_time, :value => post['updated_time']) %>
 <%= f.hidden_field(:social_user_id, :value => current_social_user.id ) %>
@@ -95,14 +96,14 @@
 
 
 			</div><!-- /.career-pin-conatiner -->
-
+			<div class="user-container">
 				<div class="admin-options">
 					<div class="admin-stats">
+					<h2>Pokaż trochę pasji</h2>
 					<%= button_to create_pin_from_facebook_path, params: {id: params[:id], times: params[:times]}, class: " button", method: :get do %>
 						Dodaj wszystkie(20) posty do career-pin
 					<% end %>
-					<h2>Tytuł podstrony jakiś mądry</h2>
-					<p>Tekst podstrony niekoniecznie bardzo mądry ale na pewno długi</p>
+					<p>Zacznij obserwować tą stronę, aby dodać ją do <i class="fa fa-bookmark"></i> zakładek i mieć do niej zawsze szybki dostęp.</p>
 						<!-- BUTTON DO STALKOWANIA -->
 						<% if current_company.stalked_pages.where(:pageid => params[:id] ).first %>
 						 <%= button_to stalked_page_path(params[:id]), class: " button", style: "padding: 0 auto;", method: :delete do %>
@@ -116,15 +117,14 @@
 							<%= f.hidden_field(:company_id, :value => current_company.id) %>
 							<%= f.hidden_field(:provider, :value => "facebook") %>
 							<%= button_to type: "submit", class: "button", form_class: "delete" do %>
-								Follow
+								Obserwuj
 							<% end %>
 						<% end %>
 						<!-- KONIEC BUTTONA DO STALKOWANIA -- >
 
-					</div>
+											</div>
 					<% end %>
-
-
+					
 
 				</div><!-- /.admin-options -->
 		</div><!-- /.user-container -->

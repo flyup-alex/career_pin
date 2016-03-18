@@ -56,42 +56,32 @@
 				<div class="admin-options">
 					<div class="admin-stats">
 					
-					<h2>Analitics:</h2>
+					<h2>W ciągu ostatnich 7 dni</h2>
 
 					<div class="stats">
 
 						<div class="stat-box">
-							<h3>Visited</h3>
-							<p><%= @visited%></p>
+							<h3>career-pin wyświetlono</h3>
+							<p><%= @views %> razy</p>
 						</div>
 
 						<div class="stat-box">
-							<h3>Views</h3>
-							<p><%= @views %></p>
+							<h3>career-pin został odwiedzony</h3>
+							<p><%= @visited%> razy</p>
 						</div>
-						<p>Powyżej widnieją statystyki, dzięki którym możesz obserwować, jakim zainteresowaniem cieszy się miejsce, w którym został umieszczony career-pin. </p>
-
-						<p>Aby umieścić career-pin na swojej stronie wyślij dane do swojego działu IT, lub samodzielnie dodaj poniższy kod w odpowiednie miejsce na Twojej stronie.</p>
-						
+					
 						<div class="stat-box alt">
-							<h3>iframe</h3>
-							<p>&lt;iframe width="100%" height="3000px" src="http://career-pin.com/career-pin/<%= "#{current_company.name}" %> frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</p>
+							<h3>Kod wtyczki</h3>
+							<p>&lt;iframe width="100%" height="3000px" src="http://career-pin.com/career-pin/<%= "#{current_company.name}" %>" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</p>
 						</div>
-
-						<a HREF="mailto:the_best_it_guy_in_universe?subject=career-pin implementation&body=Hi, please implement this code to our website. I would like to this be here: <place for link>. The only thing is to get here that awesome link. ">tell a friend</a>
-
-						<p>Wyślij swoim pracownikom dostęp do career-pin aby zachęcić ich do wymieniania się własnymi treściami.</p>
-						<div class="stat-box alt">
-							<h3>Employee link</h3>
-							<p>http://career-pin.com/company/<%= "#{current_company.name}"%></p>
-						</div>
-						
-						
-
+						<p>Aby umieścić career-pin na swojej stronie wyślij dane do swojego działu IT, lub samodzielnie dodaj powyższy kod w odpowiednie miejsce na Twojej stronie.</p>
+						<ul id="pag">
+     <li>
+	 <a HREF="mailto:osoba_implementująca_wtyczkę@domenafirmy.pl?subject=Implementacja career-pin&body=Dzień dobry,%0D%0ABardzo proszę o implementację wtyczki career-pin w zakładce kariera naszej strony firmowej.%0D%0A------------------------------------%0D%0A%0D%0AProszę wpisać informacje odnośnie dokładnego miejsca implementacji%0D%0A%0D%0A------------------------------------%0D%0A------------------------------------%0D%0A%0D%0AProszę wkleić tutaj KOD WTYCZKI, znajdujący się na stronie career-pin.%0D%0A%0D%0A------------------------------------%0D%0A%0D%0AInformacje dodatkowe:%0D%0A
+	Wtyczka career-pin może zostać umieszczona w dowolnym miejscu danej strony. Wtyczka zajmie całą szerokość elementu do którego zostanie wklejona.%0D%0AWysokość wtyczki to zawsze 3000px, ze względu na 20 dostępnych Pinów w jednym momencie.%0D%0A%0D%0AKod wtyczki można dowolnie modyfikować.%0D%0AW razie jakichkolwiek problemów skontaktuj się z Aleksandrem Nowakiem - tel: +48 796 798 700, mail: hi@career-pin.com ">Wyślij dane do programisty</a>
+	 </li>
+	</ul>
 					</div>
-					
-					
-					
 					</div>
 				</div><!-- /.admin-options -->
 		</div><!-- /.user-container -->

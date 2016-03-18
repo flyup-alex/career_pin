@@ -40,7 +40,7 @@ Posts from social FACEBOOK
 			<% if params[:provider] == "facebook"%>
 			 <div class="career-pin-conatiner-user">
 				<ul class="career-pin-preview">
-					<li>Your Facebook posts</li>
+					<li style="font-family: carnas light;">Twoje ostatnie posty</li>
 					<% autor_photo = @graph.get_picture(@feed.first['from']['id'], type: :large) %>
 					<% @feed.each do |post| %>
 						<% if post['full_picture'].nil? %>
@@ -123,7 +123,7 @@ Posts from social TWITTER
 
 		<div class="career-pin-conatiner-user">
         <ul class="career-pin-preview">
-          <li>Your Twitter posts</li>
+          <li style="font-family: carnas light;">Twoje ostatnie tweety</li>
             <% @last_tweets.each do |tweet| %>
             <% if tweet.media.present? %>
              <li>
@@ -247,19 +247,16 @@ Posts from social TWITTER
 				<% if params[:provider] == "facebook" %>
 				<div class="worker-options">
 
-					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
+					<h2>Jak się masz?</h2>
 
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
-					
-
-
+					<p>Pokaż swoim współpracownikom niesamowite wydarzenia, które pozwolą im poznać Ciebie oraz Twoje pasje. Pokaż ostatni wyjazd na szkolenie, świetne zdjęcie z pracy lub - ten tekst jest wyzwaniem dla @Zyta, @Kasia, @Jacek :p</p>
 
 				<div class="center-div">
 					<div class="worker-social">
 						<% if current_company %>
 				         <%= link_to timelines_path(:provider => "twitter"), class: "btn btn-block btn-social btn-lg btn-twitter", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
 						 <i class="fa fa-twitter"></i>
-					     Log in with Twitter
+					     Zaloguj przez Twitter
 				         <% end %>
 						<% end %>
 					</div>
@@ -275,20 +272,16 @@ Posts from social TWITTER
 				<% if params[:provider] == "twitter" %>
 				<div class="worker-options">
 
-					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
+					<h2>O czym ptaszki śpiewają?</h2>
 
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
-
-					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nostrum eos quo totam quibusdam, optio vitae dolor nihil vel perferendis consequatur commodi, accusamus, enim aperiam odit soluta corporis! Culpa, nostrum.</h2>
-
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officia, perspiciatis est suscipit libero ipsa ut dicta fugiat cupiditate, iste veniam distinctio, dolorum deserunt rem illo non at laudantium quam.</p>
+					<p>Przypnij swoje tweety związane z kulturą organizacyjną firmy lub współpracownikami.</p>
 
 				<div class="center-div">
 				<div class="worker-social">
 				<% if current_company %>
 				 <%= link_to timelines_path(:provider => "facebook"), class: "btn btn-block btn-social btn-lg btn-facebook", data: {toggle: "tooltip", placement: "bottom"}, title: "Facebook" do %>
 					<i class="fa fa-facebook-official"></i>
-					Log in with Facebook
+					Zaloguj przez Facebook
 				 <% end %>
 
 				<% end %>
