@@ -53,8 +53,11 @@ include SocialUserHelper
        pin.career_pin = true
        pin.save
       end
-    redirect_to :back
-
+    if params[:career_pin] == "true"
+     redirect_to step_by_step_path(step: "3", provider: "twitter")
+    else
+     redirect_to :back
+    end
   end
 
   def facebook_create
@@ -82,7 +85,11 @@ include SocialUserHelper
        pin.career_pin = true
        pin.save
       end
-    redirect_to :back
+    if params[:career_pin] == "true"
+     redirect_to step_by_step_path(step: "3", provider: "facebook")
+    else
+     redirect_to :back
+    end
   end
 
   def destroy

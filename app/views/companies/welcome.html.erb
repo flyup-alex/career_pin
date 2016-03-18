@@ -2,7 +2,7 @@
 
 			<div class="career-pin-conatiner-user">
 				<ul class="career-pin-preview">
-					<li>Your employees' posts</li>
+					<li><span style="font-family:carnas light;">Informacje wewnetrzne <%= current_company.name %></span></li>
 					<% @pins.each do |pin| %>
 					<% if pin.image.nil? || pin.image.empty? %>
 					 <li class=<%="#{pin.provider}-list"%>>

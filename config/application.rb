@@ -23,6 +23,7 @@ module CareerPin
     # Do not swallow errors in after_commit/after_rollback callbacks.
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"  
+    config.assets.paths << Rails.root.join("app", "assets", "javascripts", "libs")
 
     
   end

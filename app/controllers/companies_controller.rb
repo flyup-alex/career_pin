@@ -4,9 +4,16 @@ include SocialUserHelper
 
   def welcome
     session[:company_name] = current_company.name
-    if !current_company.pins.present? 
+    if !current_company.pins.present? && !current_social_user
       redirect_to step_by_step_path(step: 1) 
+    elsif !current_company.pins.present? && current_social_user
+      if current_social_user.facebook_token
+       redirect_to step_by_step_path(step: 2, provider: "facebook")
+      elsif current_social_user.twitter_token
+       redirect_to step_by_step_path(step: 2, provider: "twitter")
+      end
     end
+      
     # How many people from your company seen inside version of career-pin #
     
     @views = 0
@@ -103,7 +110,24 @@ include SocialUserHelper
 
 
   def step_by_step
-    
+
+    if params[:provider] == "facebook"
+     @graph = facebook_data(current_social_user) 
+     @pages = @graph.get_connection( "me" , 'likes',
+                    {fields: ['id', 'name'], limit: 20, :offset => "#{params[:times].to_i*19}"})
+    elsif params[:provider] == "twitter"
+     @friends = twitter_pass.friends
+    end 
+
+    if params[:step] == "3"
+     @pins = Pin.where(company_name: current_company.name, career_pin: true).order(creation_time: :desc).first(10)
+    end
+
+    if params[:delete] == "true" && params[:step] == "2"
+      Pin.where(company_name: current_company.name, career_pin: true).each do |pin|
+       pin.destroy
+      end
+    end    
   end
 
 

@@ -34,7 +34,7 @@ include SocialUserHelper
                       fields: ['message', 'id', 'from', 'type',
                                 'picture','full_picture', 'object_id', 'link', 'created_time', 'updated_time', 'place', 'actions' 
 
-                        ], limit: 20, :offset => "#{params[:times].to_i*19}"})
+                        ], limit: 100, :offset => "#{params[:times].to_i*19}"})
   	end
   	
   	if current_social_user.twitter_token.present?

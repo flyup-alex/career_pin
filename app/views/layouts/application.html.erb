@@ -20,9 +20,11 @@
 
 <body>
 	<% if company_signed_in? %>
-
+	<% if params[:step] == "1" || params[:step] == "2" || params[:step] == "3" || params[:step] == "4" || params[:step] == "5" %>
+	<% else %>
 	<header>
 		<nav class="admin-options-logout">
+			
 			<%= link_to social_users_destroy_path, method: :delete, class: "worker-logout", data: {toggle: "tooltip", placement: "bottom", title: "Sign out"} do %>
 				<i class="fa fa-sign-out"></i>
 			<% end %>
@@ -80,6 +82,7 @@
 			<% end %>
 		</nav>
 	</header>
+	<% end %>
 	<% end %>
 
 <%= yield %>

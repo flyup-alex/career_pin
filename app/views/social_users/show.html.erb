@@ -16,7 +16,9 @@
 					<i class="fa fa-twitter"></i>
 				 <% end %>
 				<% else %>
-				<a class="worker-logout" data-toggle="tooltip" data-placement="bottom" title="Employers' posts"><i class="fa fa-users"></i></a>
+				<%= link_to '/auth/twitter', class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
+					<i class="fa fa-twitter"></i>
+				 <% end %>
 				<% end %>
 				<%= link_to timelines_path(:provider => "facebook"), class: "worker-logout", data: {toggle: "tooltip", placement: "bottom"}, title: "Twitter" do %>
 					<i class="fa fa-facebook-official"></i>

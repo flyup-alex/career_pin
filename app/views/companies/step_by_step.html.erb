@@ -2,23 +2,25 @@
 <% if params[:step] == "1" %>
 <div class="user-container">
 
-			<div class="career-pin-conatiner-user">
+			<div class="career-pin-conatiner-user" style="margin: 0 auto;">
 				<ul class="career-pin-preview">
-					<li>Your employees' posts</li>
+					<li>Welcome to <span style="font-family: carnas light;">career-pin</span></li>
 					
 				</ul>
-			</div><!-- /.career-pin-conatiner -->
-
 				<div class="admin-options">
 					<div class="admin-stats">
 					
-					<h2>Here are some stats!</h2>
+					<h2>Log in with your social media account:</h2>
 
 					<div class="stats">
 
-						<div class="stat-box">
-							<h3>First step</h3>
-							<p><%= @views %></p>
+						<div class="worker-social">
+							<a class="btn btn-block btn-social btn-lg btn-twitter" href="/auth/twitter">
+							<i class="fa fa-twitter"></i>Log in with Twitter</a>
+						</div>
+						<div class="worker-social">
+							<a class="btn btn-block btn-social btn-lg btn-facebook" href="/auth/facebook">
+							<i class="fa fa-facebook-official"></i>Log in with Facebook</a>
 						</div>
 
 						<div class="stat-box">
@@ -30,8 +32,218 @@
 					
 					</div>
 				</div><!-- /.admin-options -->
+			</div><!-- /.career-pin-conatiner -->
+
+				
 		</div><!-- /.user-container -->
-<% elsif params[:step] == "2"
-	%>
-test
+<% elsif params[:step] == "2" %>
+	<% if params[:provider] == "facebook" %>
+<div class="user-container">
+
+			<div class="career-pin-conatiner-user" style="margin: 0 auto;">
+				<ul class="career-pin-preview">
+					<li>Pick up your base to create <span style="font-family: carnas light;">career-pin</span></li>
+				</ul>
+				<% @pages.each do |page| %>
+					<div class="box">
+						<%= link_to create_pin_from_facebook_path(id: page['id'], times: params[:times], :career_pin => "true") do %>
+							<div class="profile-image">
+								<%= image_tag( @graph.get_picture( page['id'], type: :large) ) %>
+							</div>
+							<div class="profile-name">
+								<span class="text-center"><%= page['name']%></span>
+							</div>
+						<% end %>            
+					</div>
+				<% end %>
+				<ul id="pag">
+	          	<% if !params[:times].present? || params[:times] == "0" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>	
+	          		<%= link_to "1", step_by_step_path( :times => 0, :provider => "facebook", :step => "2") %>
+	          	</li>
+	          	<% if params[:times] == "1" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "2", step_by_step_path( :times => 1, :provider => "facebook", :step => "2") %>
+	          	</li>
+	          	<% if params[:times] == "2" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "3", step_by_step_path( :times => 2, :provider => "facebook", :step => "2") %>
+	          	</li>
+	          	<% if params[:times] == "3" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "4", step_by_step_path( :times => 3, :provider => "facebook", :step => "2") %>
+	          	</li>
+	          	<% if params[:times] == "4" %>
+	          	 <li class="active">
+	          	<% else %>
+	          	 <li>
+	          	<% end %>
+	          		<%= link_to "5", step_by_step_path( :times => 4, :provider => "facebook", :step => "2") %>
+	          	</li>
+	          </ul>	
+			</div><!-- /.career-pin-conatiner -->	
+
+		</div><!-- /.user-container -->
+
+	<% elsif params[:provider] == "twitter" %>
+
+<div class="user-container">
+
+			<div class="career-pin-conatiner-user" style="margin: 0 auto;">
+				<ul class="career-pin-preview">
+					<li>Pick up your base to create <span style="font-family: carnas light;">career-pin</span></li>
+				</ul>
+				<% @friends.each do |friend| %>
+	             <div class="box">
+	                <%= link_to create_pin_from_twitter_path(:name => friend.screen_name, :career_pin => "true") do %>
+	                 <div class="profile-image">
+	                   <!-- Getting normal image from twitter -->
+	                   <% a = "#{friend.profile_image_url_https}"  %>
+	                   <% a.slice!("_normal") %>
+	                   <%= image_tag(a) %>
+	                 </div>
+	                 <div class="profile-name">
+	                   <span class="text-center"><%= friend.name %></span>
+	                 </div>      
+	                <% end %>
+	         	 </div>
+        		<% end %>
+
+			</div><!-- /.career-pin-conatiner -->	
+
+		</div><!-- /.user-container -->
+
+	
+	<% end %>
+<% elsif params[:step] == "3"%>
+
+
+<div class="career-pin-conatiner-user" style="margin: 0 auto;">
+	<ul class="career-pin-preview">
+		<li><span style="font-family: carnas light;">career-pin</span></li>
+		<% @pins.each do |pin| %>
+		<% if pin.image.nil? || pin.image.empty? %>
+		 <li class=<%="#{pin.provider}-list"%>>
+	 	 <% else %>
+		 <li>
+		<% end %>
+			<div class="cp-2">
+				<a target="blank" href=<%= "#{pin.link}" %>>
+					<div class="cp-image">
+						<%= image_tag( pin.image, class: "myBackgroundImage") %>
+					</div>
+					<div class="cp-social">
+						<% if pin.provider == "facebook" %>
+						<i class="fa fa-facebook"></i>
+						<% elsif pin.provider == "twitter" %>
+						<i class="fa fa-twitter"></i>
+						<% end %>
+					</div>
+					<div class="cp-button preview">
+
+					</div>
+
+					<div class="cp-allweys">
+						<div class="cp-author-image">
+							<%= image_tag( pin.author_image )%>
+						</div>
+						<div class="cp-text">
+							<p><% if pin.image.nil? || pin.image.empty? %>
+								 <%= pin.message.first(250) if pin.message %>
+								 <% else %>
+								 <%= pin.message.first(90) if pin.message %>
+								<% end %>
+							</p>
+							<div class="cp-data">
+								<span class="cp-autor"><%= pin.author_name %></span>
+								<time><%= time_ago_in_words( pin.creation_time ) %> ago</time>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</li>
+		<% end %>	
+	</ul>
+	<ul id="pag">
+	<li style="margin-right: 50px;">
+	  <%= link_to "Wybierz inną bazę", step_by_step_path(step: "2", provider: params[:provider], delete: "true")%>
+	 </li>
+	 <li style="margin-left: 100px;">
+	  <%= link_to "Gotowe", step_by_step_path(step: "4")%>
+	</li>
+	</ul>
+</div >
+
+<% elsif params[:step] == "4"%>
+<div class="user-container">
+
+			<div class="career-pin-conatiner-user" style="margin: 0 auto;">
+				<ul class="career-pin-preview">
+					<li><span style="font-family: carnas light;">Implementacja career-pin</span></li>
+				</ul>
+
+				<div class="stat-box alt">
+							<h3>Kod wtyczki:</h3>
+							<p>Dzięki poniższemu kodowi możesz pokazać osobom spoza firmy wybrane wiadomości z wewnętrznego career-pina.</p>
+							<p>&lt;iframe width="100%" height="3000px" src="http://career-pin.com/career-pin/<%= "#{current_company.name}" %> frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</p>
+						</div>
+				<p>Powyższy kod należy zaimplementować w odpowiednie miejsce na stronie internetowej firmy.</p>
+				<ul id="pag">
+					<li>
+	<a HREF="mailto:osoba_implementująca_wtyczkę@domenafirmy.pl?subject=Implementacja career-pin&body=Dzień dobry,%0D%0ABardzo proszę o implementację wtyczki career-pin w zakładce kariera naszej strony firmowej.%0D%0A------------------------------------%0D%0A%0D%0AProszę wpisać informacje odnośnie dokładnego miejsca implementacji%0D%0A%0D%0A------------------------------------%0D%0A------------------------------------%0D%0A%0D%0AProszę wkleić tutaj KOD WTYCZKI, znajdujący się na stronie career-pin.%0D%0A%0D%0A------------------------------------%0D%0A%0D%0AInformacje dodatkowe:%0D%0A
+	Wtyczka career-pin może zostać umieszczona w dowolnym miejscu danej strony. Wtyczka zajmie całą szerokość elementu do którego zostanie wklejona.%0D%0AWysokość wtyczki to zawsze 3000px, ze względu na 20 dostępnych Pinów w jednym momencie.%0D%0A%0D%0AKod wtyczki można dowolnie modyfikować.%0D%0AW razie jakichkolwiek problemów skontaktuj się z Aleksandrem Nowakiem - tel: +48 796 798 700, mail: hi@career-pin.com ">Wyślij dane do firmowego programisty</a>
+	<li>
+	<%= link_to "Pokaż instrukcję", root_path %>
+	</li>
+	<li>
+	<%= link_to "Pomiń ten krok", step_by_step_path(step: "5") %>
+	</li>
+	</ul>
+
+				</div><!-- /.career-pin-conatiner -->	
+
+		</div><!-- /.user-container -->
+
+<% elsif params[:step] == "5"%>
+<div class="user-container">
+
+			<div class="career-pin-conatiner-user" style="margin: 0 auto;">
+				<ul class="career-pin-preview">
+					<li><span style="font-family: carnas light;">Poinformuj wspólpracowników</span></li>
+				</ul>
+
+				<div class="stat-box alt">
+							<h3>Dostęp dla pracowników:</h3>
+							<p>http://career-pin.com/company/<%= "#{current_company.name}" %></p>
+						</div>
+				<p>Powyższy link umożliwia zalogowanie się Twoim pracownikom poprzez Social-Media i dodanie swoich własnych postów do wewnętrznego career-pina. Posty dodane przez pracowników są widoczne tylko dla zalogowanych użytkowników. Posty pracowników mogą również zostać przypięte do career-pina.</p>
+				<ul id="pag">
+					<li>
+	<a HREF="mailto:maile_twoich_wspołpracowników@domenafirmy.pl?subject=Ludzka strona firmy&body=Dzień dobry,%0D%0ADoskonale zdajemy sobie sprawę z tego, jak ważną częścią życia każdego z Was jest praca. Wycchodząc naprzeciw oczekiwaniom naszych pracowników oraz kandydatów uruchomiliśmy usługę career-pin. Pod tym linkiem mogą Państwo znaleźć career-pin, platformę służącą do dzielenia się pasjami oraz wydarzeniami. %0D%0A%0D%0A------------------------------------%0D%0A%0D%0AProszę wkleić tutaj LINK DOSTĘPU DLA PRACOWNIKÓW, znajdujący się na stronie career-pin.%0D%0A%0D%0A------------------------------------%0D%0A%0D%0AZachęcamy do prezentowania innym współpracownikom ciekawych wiadomości, zdjęć z wyjazdów integracyjnych, targów czy innych podobnych skarbów :) Zyta wymyśl coś tutaj bo jest 4 rano :D ">Wyślij dostęp współpracownikom</a>
+	<li>
+	<%= link_to "Zakończ", root_path %>
+	</li>
+	</ul>
+
+				</div><!-- /.career-pin-conatiner -->	
+
+		</div><!-- /.user-container -->
+
+
+
+
+
 <% end %>

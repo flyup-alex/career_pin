@@ -13,9 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.min.js
-//= tether.min.js
 //= require tether.min.js
 //= require bootstrap.min.js
 //= require custom.js
 //= require jquery.cover.js
-//= require_tree .
